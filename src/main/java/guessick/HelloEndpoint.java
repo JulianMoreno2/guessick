@@ -25,9 +25,15 @@ public class HelloEndpoint {
 
     @Data
     static class Result {
-        private final int left;
+    	private final int left;
         private final int right;
         private final long answer;
+        
+        public Result(int left2, int right2, long long1) {
+        	left = left2;
+        	right = right2;
+        	answer = long1;
+		}		
     }
 
     // SQL sample
