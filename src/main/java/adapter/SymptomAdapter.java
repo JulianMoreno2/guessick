@@ -1,6 +1,5 @@
 package adapter;
 
-import domain.Sick;
 import domain.Symptom;
 import dto.SymptomDTO;
 import service.SymptomService;

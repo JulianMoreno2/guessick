@@ -5,13 +5,14 @@ import repository.SymptomRepository;
 
 public class SymptomService {
 
+	SymptomRepository symptomRepository;
+	
 	public SymptomService(SymptomRepository symptomRepository) {
-		// TODO Auto-generated constructor stub
+		this.symptomRepository = symptomRepository;
 	}
 
 	public void saveSymptom(Symptom symptom) {
-		// TODO Auto-generated method stub
-		
+		this.symptomRepository.saveSymptom(symptom);
 	}
 
 }
