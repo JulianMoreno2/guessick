@@ -11,7 +11,7 @@ import service.SickService;
 public class SaveSickResourceTest {
 	
 	@Test
-	public void symptomResourceSaveSymptom(){
+	public void sickResourceSaveSymptom(){
 		//TODO: mock
 		SickRepository sickRepository = new SickRepository();
 		SickService sickService = new SickService(sickRepository);

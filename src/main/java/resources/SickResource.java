@@ -2,15 +2,14 @@ package resources;
 
 import adapter.SickAdapter;
 import domain.Sick;
-import domain.Symptom;
 import dto.SickDTO;
 
 public class SickResource {
 	
 	private SickAdapter sickAdapter;
 
-	public SickResource(SickAdapter symptomAdapter) {
-		this.sickAdapter = symptomAdapter;
+	public SickResource(SickAdapter sickAdapter) {
+		this.sickAdapter = sickAdapter;
 	}
 
 	public Sick saveSyptom(SickDTO sickDTO) {		
