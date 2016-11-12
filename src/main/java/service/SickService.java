@@ -1,19 +1,23 @@
 package service;
 
 import domain.Sick;
-import repository.SickRepository;
+import domain.Symptom;
+import repository.Repository;
 
 public class SickService {
 
-	SickRepository sickRepository;
+	Repository repository;
 	
-	public SickService(SickRepository sickRepository) {
-		this.sickRepository = sickRepository;
+	public SickService(Repository repository) {
+		this.repository = repository;
 	}
 
-	public void saveSick(Sick sick) {
-		//TODO: Something
-		this.sickRepository.saveSick(sick);		
+	public Sick saveSick(Sick sick) {				
+		sick.getSymptoms().stream().forEach(symptom -> this.saveSymptom(symptom));
+		return repository.saveSick(sick);	
 	}
 
+	private Symptom saveSymptom(Symptom symptom) {
+		return repository.saveSymptom(symptom);
+	}
 }

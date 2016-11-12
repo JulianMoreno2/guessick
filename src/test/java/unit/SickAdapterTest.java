@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import adapter.SickAdapter;
-import repository.SickRepository;
+import repository.Repository;
 import service.SickService;
 
 public class SickAdapterTest {
@@ -12,7 +12,7 @@ public class SickAdapterTest {
 	@Test
 	public void saveSickAdapter(){
 		//TODO: mock
-		SickRepository sickRepository = new SickRepository();		
+		Repository sickRepository = new Repository();		
 		SickService sickService = new SickService(sickRepository);
 		SickAdapter sickAdapter = new SickAdapter(sickService);
 		

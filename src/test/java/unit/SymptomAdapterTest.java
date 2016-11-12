@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import adapter.SymptomAdapter;
-import repository.SymptomRepository;
+import repository.Repository;
 import service.SymptomService;
 
 public class SymptomAdapterTest {
@@ -12,7 +12,7 @@ public class SymptomAdapterTest {
 	@Test
 	public void saveSymptomAdapter(){
 		//TODO: mock
-		SymptomRepository symptomRepository = new SymptomRepository();		
+		Repository symptomRepository = new Repository();		
 		SymptomService symptomService = new SymptomService(symptomRepository);
 		SymptomAdapter symptomAdapter = new SymptomAdapter(symptomService);
 		

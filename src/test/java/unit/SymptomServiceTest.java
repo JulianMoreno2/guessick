@@ -3,7 +3,7 @@ package unit;
 import org.junit.Assert;
 import org.junit.Test;
 
-import repository.SymptomRepository;
+import repository.Repository;
 import service.SymptomService;
 
 public class SymptomServiceTest {
@@ -11,7 +11,7 @@ public class SymptomServiceTest {
 	@Test
 	public void saveSymptom(){
 		//TODO: mock
-		SymptomRepository symptomRepository = new SymptomRepository();
+		Repository symptomRepository = new Repository();
 		
 		SymptomService symptomService = new SymptomService(symptomRepository);
 		

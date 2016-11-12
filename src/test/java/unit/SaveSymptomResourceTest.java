@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import adapter.SymptomAdapter;
 import dto.SymptomDTO;
-import repository.SymptomRepository;
+import repository.Repository;
 import resources.SymptomResource;
 import service.SymptomService;
 
@@ -13,7 +13,7 @@ public class SaveSymptomResourceTest {
 	@Test
 	public void symptomResourceSaveSymptom(){
 		//TODO: mock
-		SymptomRepository symptomRepository = new SymptomRepository();
+		Repository symptomRepository = new Repository();
 		SymptomService symptomService = new SymptomService(symptomRepository);
 		SymptomAdapter symptomAdapter = new SymptomAdapter(symptomService);
 		SymptomResource symptomResource = new SymptomResource(symptomAdapter);
