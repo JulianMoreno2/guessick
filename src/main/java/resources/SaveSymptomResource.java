@@ -4,11 +4,11 @@ import adapter.SymptomAdapter;
 import domain.Symptom;
 import dto.SymptomDTO;
 
-public class SymptomResource {
+public class SaveSymptomResource {
 	
 	SymptomAdapter symptomAdapter;
 
-	public SymptomResource(SymptomAdapter symptomAdapter) {
+	public SaveSymptomResource(SymptomAdapter symptomAdapter) {
 		this.symptomAdapter = symptomAdapter;
 	}
 

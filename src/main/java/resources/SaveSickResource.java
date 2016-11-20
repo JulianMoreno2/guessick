@@ -4,11 +4,11 @@ import adapter.SickAdapter;
 import domain.Sick;
 import dto.SickDTO;
 
-public class SickResource {
+public class SaveSickResource {
 	
 	private SickAdapter sickAdapter;
 
-	public SickResource(SickAdapter sickAdapter) {
+	public SaveSickResource(SickAdapter sickAdapter) {
 		this.sickAdapter = sickAdapter;
 	}
 
