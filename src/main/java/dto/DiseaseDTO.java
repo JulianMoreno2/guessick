@@ -1,11 +1,11 @@
 package dto;
 
-public class SickDTO {
+public class DiseaseDTO {
 	
 	private String id;
 	private String name;
 
-	public SickDTO(String id, String name) {
+	public DiseaseDTO(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}
