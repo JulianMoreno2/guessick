@@ -1,25 +1,25 @@
 package repository;
 
+import domain.Disease;
+import domain.Symptom;
+
 import java.util.LinkedList;
 import java.util.List;
 
-import domain.Sick;
-import domain.Symptom;
-
 public class MemoryRepository implements Repository {
 	
-	List<Sick> sicks;
+	List<Disease> diseases;
 	List<Symptom> symptoms;
 	
 	public MemoryRepository(){
-		sicks = new LinkedList<Sick>();
+		diseases = new LinkedList<Disease>();
 		symptoms = new LinkedList<Symptom>();
 	}
 
 	@Override
-	public Sick saveSick(Sick sick) {
-		sicks.add(sick);
-		return sick;
+	public Disease saveDisease(Disease disease) {
+		diseases.add(disease);
+		return disease;
 	}
 
 	@Override
