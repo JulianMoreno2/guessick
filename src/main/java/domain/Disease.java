@@ -3,13 +3,13 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sick {
+public class Disease {
 
 	private String id;
 	private String name;
 	private List<Symptom> symptoms;
 	
-	public Sick(String id, String name) {
+	public Disease(String id, String name) {
 		this.id = id;
 		this.name = name;
 		this.symptoms = new ArrayList<Symptom>();

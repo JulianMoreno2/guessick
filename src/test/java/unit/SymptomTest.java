@@ -1,24 +1,23 @@
 package unit;
 
+import domain.Disease;
+import domain.Symptom;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import domain.Sick;
-import domain.Symptom;
 
 
 public class SymptomTest {
 	
 	private Symptom fever;
-	private Sick flu;
-	private Sick ebola;
+	private Disease flu;
+	private Disease ebola;
 	
 	@Before
 	public void doBefore(){
 		fever = new Symptom("1","fever");
-		flu = new Sick("1", "flu"); 
-		ebola = new Sick("2", "ebola");
+		flu = new Disease("1", "flu");
+		ebola = new Disease("2", "ebola");
 	}
 	
 	@Test
@@ -28,17 +27,17 @@ public class SymptomTest {
 	}
 	
 	@Test
-	public void symptomAddSickToItsList(){
+	public void symptomAddDiseaseToItsList(){
 		//Cuando
-		fever.addSick(flu);
+		fever.addDisease(flu);
 		//Entonces
-		Assert.assertEquals(Sick.class, fever.getSicks().get(0).getClass());
+		Assert.assertEquals(Disease.class, fever.getSicks().get(0).getClass());
 	}
 	
 	@Test
-	public void symptomAddSickAndSickAddTheSameSymptom(){
+	public void symptomAddSickAndDiseaseAddTheSameSymptom(){
 		//Cuando
-		fever.addSick(ebola);
+		fever.addDisease(ebola);
 		//Entonces
 		Assert.assertEquals("fever", ebola.getSymptoms().get(0).getName());
 	}

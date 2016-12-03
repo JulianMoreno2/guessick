@@ -1,11 +1,11 @@
 package repository;
 
-import domain.Sick;
+import domain.Disease;
 import domain.Symptom;
 
 public interface Repository {
 
-	Sick saveSick(Sick sick);
+	Disease saveDisease(Disease disease);
 
 	Symptom saveSymptom(Symptom symptom);
 

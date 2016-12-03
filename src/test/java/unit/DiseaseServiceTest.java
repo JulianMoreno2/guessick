@@ -5,16 +5,16 @@ import org.junit.Test;
 
 import repository.MemoryRepository;
 import repository.Repository;
-import service.SickService;
+import service.DiseaseService;
 
-public class SickServiceTest {
+public class DiseaseServiceTest {
 
 	@Test
 	public void saveSick(){
 		//TODO: mock
 		Repository sickRepository = new MemoryRepository();
 		
-		SickService sickService = new SickService(sickRepository);
+		DiseaseService diseaseService = new DiseaseService(sickRepository);
 		
 		Assert.assertTrue(true);
 	}
