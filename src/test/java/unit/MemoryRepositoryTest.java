@@ -2,7 +2,7 @@ package unit;
 
 import org.junit.Test;
 
-import domain.Sick;
+import domain.Disease;
 import domain.Symptom;
 
 import org.junit.Assert;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MemoryRepositoryTest {
 	
-	private Sick flu;
+	private Disease flu;
 	private Repository repository;
 	private Symptom fever;
 	
@@ -25,10 +25,10 @@ public class MemoryRepositoryTest {
 	public void doBefore(){
 		repository = new MemoryRepository();
 		
-		flu = mock(Sick.class);
+		flu = mock(Disease.class);
 		fever = mock(Symptom.class);
 		
-		List<Sick> listSicksForFever = new LinkedList<Sick>();
+		List<Disease> listSicksForFever = new LinkedList<Disease>();
 		listSicksForFever.add(flu);
 		
 		List<Symptom> listSymptomsForFlu = new LinkedList<Symptom>();
@@ -45,7 +45,7 @@ public class MemoryRepositoryTest {
 	
 	@Test
 	public void saveSickInListCorrectly(){
-		Assert.assertEquals(flu, repository.saveSick(flu));		
+		Assert.assertEquals(flu, repository.saveDisease(flu));		
 	}
 	
 	@Test

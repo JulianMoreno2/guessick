@@ -1,6 +1,6 @@
 package service;
 
-import domain.Sick;
+import domain.Disease;
 import domain.Symptom;
 import repository.Repository;
 
@@ -13,11 +13,11 @@ public class SymptomService {
 	}
 
 	public Symptom saveSymptom(Symptom symptom) {		
-		symptom.getSicks().stream().forEach(sick -> this.saveSick(sick));
+		symptom.getSicks().stream().forEach(disease -> this.saveDisease(disease));
 		return symptom;
 	}
 
-	private Sick saveSick(Sick sick) {
-		return repository.saveSick(sick);
+	private Disease saveDisease(Disease disease) {
+		return repository.saveDisease(disease);
 	}
 }
