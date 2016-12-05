@@ -3,9 +3,7 @@ package unit;
 import org.junit.Assert;
 import org.junit.Test;
 
-import domain.Disease;
 import domain.Symptom;
-import repository.MemoryRepository;
 import repository.Repository;
 import service.SymptomService;
 
