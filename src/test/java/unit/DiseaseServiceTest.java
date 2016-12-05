@@ -3,6 +3,7 @@ package unit;
 import org.junit.Assert;
 import org.junit.Test;
 
+import domain.Disease;
 import repository.MemoryRepository;
 import repository.Repository;
 import service.DiseaseService;
@@ -11,11 +12,12 @@ public class DiseaseServiceTest {
 
 	@Test
 	public void saveSick(){
-		//TODO: mock
-		Repository sickRepository = new MemoryRepository();
 		
+		Repository sickRepository = Given.giveMemoryRepository();
 		DiseaseService diseaseService = new DiseaseService(sickRepository);
+		Disease diseaseSaved = Given.giveDisease();
+		Disease disease = diseaseService.saveDisease(diseaseSaved);
 		
-		Assert.assertTrue(true);
+		Assert.assertEquals(diseaseSaved.getId(), disease.getId());
 	}
 }
