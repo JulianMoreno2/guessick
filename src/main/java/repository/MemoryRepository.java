@@ -3,8 +3,10 @@ package repository;
 import domain.Disease;
 import domain.Symptom;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class MemoryRepository implements Repository {
 	
@@ -26,5 +28,10 @@ public class MemoryRepository implements Repository {
 	public Symptom saveSymptom(Symptom symptom) {
 		symptoms.add(symptom);
 		return symptom;
+	}
+
+	@Override
+	public Symptom loadSymptom(String symptomId) {		
+		return symptoms.get(Integer.parseInt(symptomId));
 	}
 }

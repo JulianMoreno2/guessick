@@ -1,6 +1,7 @@
 package unit;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import adapter.SymptomAdapter;
@@ -14,17 +15,34 @@ import service.SymptomService;
 
 public class SymptomAdapterTest {
 
+	Repository symptomRepository;
+	SymptomService symptomService;
+	SymptomAdapter symptomAdapter;
+	
+	@Before
+	public void doBefore(){
+		
+		symptomRepository = Given.giveMemoryRepository();
+		symptomService = new SymptomService(symptomRepository);
+		symptomAdapter = new SymptomAdapter(symptomService);	
+	}
+		
 	@Test
 	public void saveSymptomAdapter(){
-		//TODO: mock
-		Repository symptomRepository = Given.giveMemoryRepository();		
-		SymptomService symptomService = new SymptomService(symptomRepository);
-		SymptomAdapter symptomAdapter = new SymptomAdapter(symptomService);
-		
 		SymptomDTO symptomDTO = Given.giveSymptomDTO();
 		Symptom symptom = symptomAdapter.saveSymptom(symptomDTO);
 		
-		Assert.assertEquals("1", symptom.getId());
+		Assert.assertEquals("0", symptom.getId());
+	}
+	
+	@Test
+	public void loadSymptomAdapter(){
+
+		SymptomDTO symptomDTO = Given.giveSymptomDTO();
+		symptomAdapter.saveSymptom(symptomDTO);
+		
+		String symptomId = "1";
+		Assert.assertEquals(symptomId, symptomAdapter.loadSymptom(symptomId).getId());
 	}
 }
 	

@@ -16,10 +16,12 @@ public class SymptomAdapter {
 		String id = symptomDTO.getId();
 		String name = symptomDTO.getName();
 		Symptom symptom = new Symptom(id, name);
-		
-		this.symptomService.saveSymptom(symptom);
-		
-		return symptom;
+				
+		return this.symptomService.saveSymptom(symptom);
+	}
+
+	public Symptom loadSymptom(String symptomId) {
+		return this.symptomService.loadSymptom(symptomId);
 	}
 
 }

@@ -13,11 +13,16 @@ public class SymptomService {
 	}
 
 	public Symptom saveSymptom(Symptom symptom) {		
-		symptom.getSicks().stream().forEach(disease -> this.saveDisease(disease));
+		repository.saveSymptom(symptom);
+		//symptom.getSicks().stream().forEach(disease -> this.saveDisease(disease));
 		return symptom;
 	}
 
 	private Disease saveDisease(Disease disease) {
 		return repository.saveDisease(disease);
+	}
+
+	public Symptom loadSymptom(String symptomId) {
+		return repository.loadSymptom(symptomId);
 	}
 }

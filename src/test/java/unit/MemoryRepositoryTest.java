@@ -38,7 +38,7 @@ public class MemoryRepositoryTest {
 		when(flu.getName()).thenReturn("gripe");
 		when(flu.getSymptoms()).thenReturn(listSymptomsForFlu);		
 		
-		when(fever.getId()).thenReturn("1");
+		when(fever.getId()).thenReturn("0");
 		when(fever.getName()).thenReturn("fiebre");
 		when(fever.getSicks()).thenReturn(listSicksForFever);
 	}
@@ -51,6 +51,12 @@ public class MemoryRepositoryTest {
 	@Test
 	public void saveSymptomInListCorrectly(){
 		Assert.assertEquals(fever, repository.saveSymptom(fever));
+	}
+	
+	@Test
+	public void loadSymptomCorrectly(){
+		repository.saveSymptom(fever);
+		Assert.assertEquals("0", repository.loadSymptom("0").getId());
 	}
 
 

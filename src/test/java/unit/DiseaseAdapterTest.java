@@ -22,6 +22,6 @@ public class DiseaseAdapterTest {
 		DiseaseDTO diseaseDTO = Given.giveDiseaseDTO();
 		Disease disease = diseaseAdapter.saveDisease(diseaseDTO);
 		
-		Assert.assertEquals("1", disease.getId());
+		Assert.assertEquals("0", disease.getId());
 	}
 }
