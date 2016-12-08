@@ -14,7 +14,7 @@ public class SymptomService {
 
 	public Symptom saveSymptom(Symptom symptom) {		
 		repository.saveSymptom(symptom);
-		//symptom.getSicks().stream().forEach(disease -> this.saveDisease(disease));
+		symptom.getSicks().stream().map(disease -> this.saveDisease(disease));
 		return symptom;
 	}
 

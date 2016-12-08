@@ -59,5 +59,9 @@ public class MemoryRepositoryTest {
 		Assert.assertEquals("0", repository.loadSymptom("0").getId());
 	}
 
-
+	@Test
+	public void loadDiseaseCorrectly(){
+		repository.saveDisease(flu);
+		Assert.assertEquals("1", repository.loadDisease("0").getId());//hardcoded, it must search by id. No by position
+}
 }
