@@ -12,7 +12,7 @@ public class SaveDiseaseResource {
 		this.diseaseAdapter = diseaseAdapter;
 	}
 
-	public Disease saveSyptom(DiseaseDTO diseaseDTO) {
+	public Disease saveDisease(DiseaseDTO diseaseDTO) {
 		Disease disease = this.diseaseAdapter.saveDisease(diseaseDTO);
 		return disease;
 	}

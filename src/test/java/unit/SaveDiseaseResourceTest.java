@@ -21,7 +21,7 @@ public class SaveDiseaseResourceTest {
 		SaveDiseaseResource diseaseResource = new SaveDiseaseResource(diseaseAdapter);
 		
 		DiseaseDTO diseaseDTO = new DiseaseDTO("1","symptom");
-		Disease disease = diseaseResource.saveSyptom(diseaseDTO);
+		Disease disease = diseaseResource.saveDisease(diseaseDTO);
 		
 		Assert.assertEquals("1", disease.getId());
 	}
