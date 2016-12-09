@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.neo4j.driver.v1.*;
+import java.util.List;
+
+import java.util.LinkedList;
 
 public class testJavaNeo4jCQLQueries {
 
@@ -52,12 +55,16 @@ public class testJavaNeo4jCQLQueries {
         String ebola_id_string = ebola_id.toString();
         //Goes to the Ebola node (by its id) and retrieves the names of all nodes connected to it
         StatementResult sympthomsResult = session.run("START a=node(" + ebola_id_string + ") MATCH (a)-[:has*]->(b) RETURN distinct b.name AS name");
+        List<String> names = new LinkedList<String>();
         while(sympthomsResult.hasNext()){
 
             Record record = sympthomsResult.next();
-            System.out.println(record.get("name").asString());
+            names.add(record.get("name").asString());
 
         }
+        Assert.assertTrue(names.contains("Headache"));
+        Assert.assertTrue(names.contains("Fever"));
+
     }
 
     @Test
