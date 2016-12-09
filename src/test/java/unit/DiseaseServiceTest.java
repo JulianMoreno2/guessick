@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import domain.Disease;
-import repository.MemoryRepository;
 import repository.Repository;
 import service.DiseaseService;
 

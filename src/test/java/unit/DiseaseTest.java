@@ -25,11 +25,10 @@ public class DiseaseTest {
 	@Test
 	public void addASymptom(){
 		//Dado
-		Symptom symptom = new Symptom("1", "disease");
+		Symptom symptom = new Symptom("symptom");
 		//Cuando
 		disease.addSymptom(symptom);
 		//Entonces
-		Assert.assertEquals(Symptom.class, disease.getSymptoms().get(0).getClass());
-		
+		Assert.assertEquals(Symptom.class, disease.getSymptoms().get("symptom").getClass());
 	}
 }

@@ -13,15 +13,15 @@ public class SymptomAdapter {
 	}
 
 	public Symptom saveSymptom(SymptomDTO symptomDTO) {
-		String id = symptomDTO.getId();
+		//String id = symptomDTO.getId();
 		String name = symptomDTO.getName();
-		Symptom symptom = new Symptom(id, name);
+		Symptom symptom = new Symptom(name);
 				
 		return this.symptomService.saveSymptom(symptom);
 	}
 
-	public Symptom loadSymptom(String symptomId) {
-		return this.symptomService.loadSymptom(symptomId);
+	public Symptom loadSymptom(String name) {
+		return this.symptomService.loadSymptom(name);
 	}
 
 }

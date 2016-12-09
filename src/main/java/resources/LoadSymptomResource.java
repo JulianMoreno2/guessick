@@ -11,7 +11,7 @@ public class LoadSymptomResource {
 		this.symptomAdapter = symptomAdapter;
 	}
 
-	public Symptom loadSymptom(String symptomId) {		
-		return this.symptomAdapter.loadSymptom(symptomId);
+	public Symptom loadSymptom(String symptomName) {		
+		return this.symptomAdapter.loadSymptom(symptomName);
 	}
 }

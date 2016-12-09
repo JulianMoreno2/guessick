@@ -11,11 +11,11 @@ import java.util.Map;
 public class MemoryRepository implements Repository {
 	
 	List<Disease> diseases;
-	List<Symptom> symptoms;
+	Map <String, Symptom> symptoms;
 	
 	public MemoryRepository(){
 		diseases = new LinkedList<Disease>();
-		symptoms = new LinkedList<Symptom>();
+		symptoms = new HashMap<String, Symptom>();
 	}
 
 	@Override
@@ -26,13 +26,14 @@ public class MemoryRepository implements Repository {
 
 	@Override
 	public Symptom saveSymptom(Symptom symptom) {
-		symptoms.add(symptom);
+		String symptomName = symptom.getName();
+		symptoms.put(symptomName, symptom);
 		return symptom;
 	}
 
 	@Override
-	public Symptom loadSymptom(String symptomId) {		
-		return symptoms.get(Integer.parseInt(symptomId));
+	public Symptom loadSymptom(String symptomName) {		
+		return symptoms.get(symptomName);
 	}
 
 	@Override

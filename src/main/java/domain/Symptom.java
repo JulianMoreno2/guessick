@@ -6,11 +6,11 @@ import java.util.List;
 public class Symptom {
 
 	private String name;
-	private String id;
+	//private String id;
 	private List<Disease> diseases;
 
-	public Symptom(String id, String name) {
-		this.id = id;
+	public Symptom(String name) {
+		//this.id = id;
 		this.name = name;
 		this.diseases = new ArrayList<Disease>();
 	}
@@ -19,16 +19,18 @@ public class Symptom {
 		return this.name;
 	}
 
+	/*
 	public String getId() {
 		return this.id;
 	}
+	*/
 
 	public void addDisease(Disease disease) {
 		this.diseases.add(disease);
 		disease.addSymptom(this);
 	}
 
-	public List<Disease> getSicks() {
+	public List<Disease> getDiseases() {
 		return this.diseases;
 	}
 }

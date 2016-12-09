@@ -23,21 +23,21 @@ public class SymptomServiceTest {
 	@Test
 	public void saveSymptomTest(){
 				
-		Symptom symptomSaved = new Symptom("1", "symptom");
+		Symptom symptomSaved = new Symptom("symptom");
 		Symptom symptom = symptomService.saveSymptom(symptomSaved);
 		
-		Assert.assertEquals(symptomSaved.getId(), symptom.getId());
+		Assert.assertEquals(symptomSaved.getName(), symptom.getName());
 	}
 	
 	@Test
 	public void loadSymptomTest(){
 		
-		Symptom symptomSaved = new Symptom("1", "symptom");
+		Symptom symptomSaved = new Symptom("symptom");
 		symptomService.saveSymptom(symptomSaved);
 		
-		String symptomId = "1";
+		String symptomName = "symptom";
 		
-		Assert.assertEquals(symptomSaved.getId(), symptomService.loadSymptom(symptomId).getId());
+		Assert.assertEquals(symptomSaved.getName(), symptomService.loadSymptom(symptomName).getName());
 	}
 	
 }

@@ -28,11 +28,11 @@ public class Given {
 	}
 
 	public static SymptomDTO giveSymptomDTO() {
-		return new SymptomDTO("0", "symptomDTO");
+		return new SymptomDTO("symptomDTO");
 	}
 	
 	public static Symptom giveSymptom() {
-		return new Symptom("0", "symptom");
+		return new Symptom("symptom");
 	}
 
 }

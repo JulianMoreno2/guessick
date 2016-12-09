@@ -31,10 +31,10 @@ public class SymptomResourceTest {
 	@Test
 	public void symptomResourceSaveSymptom(){
 		
-		SymptomDTO symptomDTO = new SymptomDTO("0","symptom");
+		SymptomDTO symptomDTO = new SymptomDTO("symptom");
 		Symptom symptom = saveSymptomResource.saveSyptom(symptomDTO);
 		
-		Assert.assertEquals("0", symptom.getId());
+		Assert.assertEquals("symptom", symptom.getName());
 	}
 	
 	@Test
@@ -42,11 +42,11 @@ public class SymptomResourceTest {
 		
 		LoadSymptomResource loadSymptomResource = new LoadSymptomResource(symptomAdapter);
 		
-		SymptomDTO symptomDTO = new SymptomDTO("0", "symptom");
+		SymptomDTO symptomDTO = new SymptomDTO("symptom");
 		saveSymptomResource.saveSyptom(symptomDTO);
 				
-		String symptomId = "0";
-		Symptom symptomLoaded = loadSymptomResource.loadSymptom(symptomId);
+		String symptomName = "symptom";
+		Symptom symptomLoaded = loadSymptomResource.loadSymptom(symptomName);
 				
 		Assert.assertEquals("symptom", symptomLoaded.getName());
 	}

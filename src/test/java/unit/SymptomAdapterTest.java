@@ -5,11 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import adapter.SymptomAdapter;
-import domain.Disease;
 import domain.Symptom;
-import dto.DiseaseDTO;
 import dto.SymptomDTO;
-import repository.MemoryRepository;
 import repository.Repository;
 import service.SymptomService;
 
@@ -32,7 +29,7 @@ public class SymptomAdapterTest {
 		SymptomDTO symptomDTO = Given.giveSymptomDTO();
 		Symptom symptom = symptomAdapter.saveSymptom(symptomDTO);
 		
-		Assert.assertEquals("0", symptom.getId());
+		Assert.assertEquals("symptomDTO", symptom.getName());
 	}
 	
 	@Test
@@ -41,8 +38,8 @@ public class SymptomAdapterTest {
 		SymptomDTO symptomDTO = Given.giveSymptomDTO();
 		symptomAdapter.saveSymptom(symptomDTO);
 		
-		String symptomId = "1";
-		Assert.assertEquals(symptomId, symptomAdapter.loadSymptom(symptomId).getId());
+		String symptomName = "symptomDTO";
+		Assert.assertEquals(symptomName, symptomAdapter.loadSymptom(symptomName).getName());
 	}
 }
 	

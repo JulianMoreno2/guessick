@@ -15,14 +15,14 @@ public class SymptomTest {
 	
 	@Before
 	public void doBefore(){
-		fever = new Symptom("1","fever");
+		fever = new Symptom("fever");
 		flu = new Disease("1", "flu");
 		ebola = new Disease("2", "ebola");
 	}
 	
 	@Test
 	public void symptomCreateWithIdAndName(){
-		Assert.assertEquals("1", fever.getId());
+		//Assert.assertEquals("1", fever.getId());
 		Assert.assertEquals("fever", fever.getName());
 	}
 	
@@ -31,7 +31,7 @@ public class SymptomTest {
 		//Cuando
 		fever.addDisease(flu);
 		//Entonces
-		Assert.assertEquals(Disease.class, fever.getSicks().get(0).getClass());
+		Assert.assertEquals(Disease.class, fever.getDiseases().get(0).getClass());
 	}
 	
 	@Test
@@ -39,7 +39,7 @@ public class SymptomTest {
 		//Cuando
 		fever.addDisease(ebola);
 		//Entonces
-		Assert.assertEquals("fever", ebola.getSymptoms().get(0).getName());
+		Assert.assertEquals("fever", ebola.getSymptoms().get("fever").getName());
 	}
 
 }
