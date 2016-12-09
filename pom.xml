@@ -1,43 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>guessick</groupId>
     <artifactId>guessick</artifactId>
-    <version>1</version>
-    <packaging>jar</packaging>
-
-    <name>Spring Boot Jersey Blank Project (from https://github.com/making/spring-boot-jersey-blank)</name>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.0.RELEASE</version>
-    </parent>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>guessick.App</start-class>
-        <java.version>1.8</java.version>
-        <lombok.version>1.14.8</lombok.version>
-        <log4jdbc.log4j2.version>1.16</log4jdbc.log4j2.version>
-        <rest.assured.version>2.3.3</rest.assured.version>
-    </properties>
-
+    <version>1.0.0</version>
     <dependencies>
-
         <dependency>
         	<groupId>org.mockito</groupId>
         	<artifactId>mockito-core</artifactId>
+        	<version>2.2.26</version>
         </dependency>
         <dependency>
         	<groupId>junit</groupId>
         	<artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>org.neo4j</groupId>
-        	<artifactId>neo4j-cypher</artifactId>
-        	<version>3.0.0</version>
+        	<version>4.12</version>
         </dependency>
         <dependency>
         	<groupId>org.neo4j</groupId>
@@ -57,17 +33,31 @@
         </dependency>
     </dependencies>
     <build>
+      <finalName>guessick</finalName>    
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>${spring-loaded.version}</version>
-                    </dependency>
-                </dependencies>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <source>1.8</source>
+                  <target>1.8</target>
+                  <compilerArgument>-Werror</compilerArgument>
+                </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugin</groupId>
+              <artifactId>maven-jar-plugin</artifactId>
+              <version>3.0.2</version>
+              <configuration>
+                <archive>
+                  <manifest>
+                    <addClasspath>true</addClasspath>
+                    <mainClass>guessick.App</mainClass>
+                  </manifest>
+                </archive>
+              </configuration>
             </plugin>
         </plugins>
     </build>
