@@ -1,62 +1,64 @@
 package db;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.Assert;
-import org.neo4j.cypher.internal.javacompat.ExecutionEngine;
-import org.neo4j.driver.v1.AuthTokens;
-import org.neo4j.driver.v1.Driver;
-import org.neo4j.driver.v1.GraphDatabase;
-import org.neo4j.driver.v1.Record;
-import org.neo4j.driver.v1.Session;
-import org.neo4j.driver.v1.StatementResult;
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.Result;
-import org.neo4j.graphdb.factory.GraphDatabaseFactory;
-
-
-import java.io.File;
-import java.util.Map;
+import org.neo4j.driver.v1.*;
 
 public class testJavaNeo4jCQLQueries {
 
-    private static GraphDatabaseService db;
-    private static ExecutionEngine querier;
+    private static Driver driver;
+    private static Session session;
 
     @BeforeClass
     public static void initializeDatabase() {
-    	
-//        //Database file
-//        File dbFile = new File("../GuessickDB");
-//
-//        //Database scheme creation
-//        GraphDatabaseFactory dbFactory = new GraphDatabaseFactory();
-//        db = dbFactory.newEmbeddedDatabase(dbFile);
+
+        driver = GraphDatabase.driver("bolt://localhost",AuthTokens.basic("neo4j", "1234"));
+        session = driver.session();
+        session.run("MATCH (n) DETACH DELETE n"); //Delete all
 
         /*Definition of some nodes
             s_ notes a sympthom
             d_ notes a disease
-         */
-//        db.execute("CREATE (d_ebola: Ebola)");
-//        db.execute("CREATE (s_fever: Fever)");
-//        db.execute("CREATE (s_headache: Headache)");
-//        db.execute("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (d_ebola)-[Has:has]->(s_fever)");
-//        db.execute("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_ebola)");
-//        db.execute("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (d_ebola)-[Has:has]->(s_headache)");
-//        db.execute("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_ebola)");
+        */
+        session.run("CREATE (d_ebola: Ebola { name:'Ebola' } )");
+        session.run("CREATE (s_fever: Fever { name:'Fever' } )");
+        session.run("CREATE (s_headache: Headache { name:'Headache' } )");
+        session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (d_ebola)-[Has:has]->(s_fever)");
+        session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_ebola)");
+        session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (d_ebola)-[Has:has]->(s_headache)");
+        session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_ebola)");
 
 
     }
 
     @Test
-    public void testGetEbolasSympthoms() {
+    public void testGetEbolaNode() {
 
-        //Result ebolaResult = db.execute("MATCH (d_ebola: Ebola) RETURN d_ebola"); //Obtener todos los nodos relacionados con Ebola
-        
+        StatementResult ebolaResult = session.run("MATCH (d_ebola: Ebola) WHERE d_ebola.name = 'Ebola' RETURN d_ebola.name AS name");
+        Record record = ebolaResult.next();
+        Assert.assertEquals("Ebola", record.get("name").asString());
+
     }
 
     @Test
-    public void testAnSpikeOfNeo4J(){
+    public void testGetEbolaSympthoms() {
+
+        StatementResult ebolaResult = session.run("MATCH (d_ebola: Ebola) WHERE d_ebola.name = 'Ebola' RETURN ID(d_ebola) AS id");
+        Record ebolaRecord = ebolaResult.next();
+        Integer ebola_id = ebolaRecord.get("id").asInt();
+        String ebola_id_string = ebola_id.toString();
+        StatementResult sympthomsResult = session.run("START a=node(" + ebola_id_string + ") MATCH (a)-[:has*]->(b) RETURN distinct b.name AS name");
+        while(sympthomsResult.hasNext()){
+
+            Record record = sympthomsResult.next();
+            System.out.println(record.get("name").asString());
+
+        }
+    }
+
+    @Test
+    public void testASpikeOfNeo4J(){
     	
     	/**
     	 * Install Neo4j
@@ -77,9 +79,7 @@ public class testJavaNeo4jCQLQueries {
     	 *      Reconfigure pass to: 1234
     	 *      
     	 *      Run Test
-    	 */    	
-    	Driver driver = GraphDatabase.driver("bolt://localhost",AuthTokens.basic("neo4j", "1234"));
-    	Session session = driver.session();
+    	 */
     	
     	session.run("CREATE (a:Person {name:'Arthur', title:'King'})");
     	

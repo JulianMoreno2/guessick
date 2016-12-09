@@ -49,6 +49,12 @@
         	<artifactId>neo4j-java-driver</artifactId>
         	<version>1.0.6</version>
         </dependency>
+        <dependency>
+            <groupId>guessick</groupId>
+            <artifactId>guessick</artifactId>
+            <version>1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
