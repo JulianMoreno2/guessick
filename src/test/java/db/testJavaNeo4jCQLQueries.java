@@ -58,10 +58,30 @@ public class testJavaNeo4jCQLQueries {
     @Test
     public void testAnSpikeOfNeo4J(){
     	
+    	/**
+    	 * Install Neo4j
+    	 *      wget -O - https://debian.neo4j.org/neotechnology.gpg.key | sudo apt-key add -
+    	 *      echo 'deb http://debian.neo4j.org/repo stable/' | sudo tee /etc/apt/sources.list.d/neo4j.list
+    	 *      sudo apt-get update
+    	 * Neo4j Community Edition: 
+    	 *      sudo apt-get install neo4j
+    	 *      
+    	 * Run Neo4j
+    	 *      sudo neo4j restart
+    	 *      
+    	 * Configure Neo4j
+    	 *      http://localhost:7474/
+    	 *      
+    	 *      Set Admin: neo4j
+    	 *      Set Pass:  neo4j
+    	 *      Reconfigure pass to: 1234
+    	 *      
+    	 *      Run Test
+    	 */    	
     	Driver driver = GraphDatabase.driver("bolt://localhost",AuthTokens.basic("neo4j", "1234"));
     	Session session = driver.session();
     	
-    	//session.run("CREATE (a:Person {name:'Arthur', title:'King'})");
+    	session.run("CREATE (a:Person {name:'Arthur', title:'King'})");
     	
     	StatementResult result = session.run("MATCH (a:Person) WHERE a.name = 'Arthur' RETURN a.name AS name, a.title AS title"); 
 
