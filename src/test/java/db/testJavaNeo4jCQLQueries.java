@@ -35,6 +35,7 @@ public class testJavaNeo4jCQLQueries {
     @Test
     public void testGetEbolaNode() {
 
+        //Retrieve the 'name' property from the Ebola node
         StatementResult ebolaResult = session.run("MATCH (d_ebola: Ebola) WHERE d_ebola.name = 'Ebola' RETURN d_ebola.name AS name");
         Record record = ebolaResult.next();
         Assert.assertEquals("Ebola", record.get("name").asString());
@@ -44,10 +45,12 @@ public class testJavaNeo4jCQLQueries {
     @Test
     public void testGetEbolaSympthoms() {
 
+        //Retrieves the id from the Ebola node
         StatementResult ebolaResult = session.run("MATCH (d_ebola: Ebola) WHERE d_ebola.name = 'Ebola' RETURN ID(d_ebola) AS id");
         Record ebolaRecord = ebolaResult.next();
         Integer ebola_id = ebolaRecord.get("id").asInt();
         String ebola_id_string = ebola_id.toString();
+        //Goes to the Ebola node (by its id) and retrieves the names of all nodes connected to it
         StatementResult sympthomsResult = session.run("START a=node(" + ebola_id_string + ") MATCH (a)-[:has*]->(b) RETURN distinct b.name AS name");
         while(sympthomsResult.hasNext()){
 
