@@ -16,8 +16,8 @@ public class SymptomTest {
 	@Before
 	public void doBefore(){
 		fever = new Symptom("fever");
-		flu = new Disease("1", "flu");
-		ebola = new Disease("2", "ebola");
+		flu = new Disease("flu");
+		ebola = new Disease("ebola");
 	}
 	
 	@Test

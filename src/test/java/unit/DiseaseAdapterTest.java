@@ -22,7 +22,7 @@ public class DiseaseAdapterTest {
 		DiseaseDTO diseaseDTO = Given.giveDiseaseDTO();
 		Disease disease = diseaseAdapter.saveDisease(diseaseDTO);
 		
-		Assert.assertEquals("0", disease.getId());
+		Assert.assertEquals("diseaseDTO", disease.getName());
 	}
 	
 	@Test
@@ -34,8 +34,8 @@ public class DiseaseAdapterTest {
 		DiseaseDTO diseaseDTO = Given.giveDiseaseDTO();
 		diseaseAdapter.saveDisease(diseaseDTO);
 		
-		String diseaseId = "0";
-		Assert.assertEquals(diseaseId, diseaseAdapter.loadDisease(diseaseId).getId());
+		String diseaseName = "diseaseDTO";
+		Assert.assertEquals(diseaseName, diseaseAdapter.loadDisease(diseaseName).getName());
 	}
 	
 	

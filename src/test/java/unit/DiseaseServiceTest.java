@@ -17,6 +17,6 @@ public class DiseaseServiceTest {
 		Disease diseaseSaved = Given.giveDisease();
 		Disease disease = diseaseService.saveDisease(diseaseSaved);
 		
-		Assert.assertEquals(diseaseSaved.getId(), disease.getId());
+		Assert.assertEquals(diseaseSaved.getName(), disease.getName());
 	}
 }

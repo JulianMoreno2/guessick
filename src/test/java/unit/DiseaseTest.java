@@ -13,12 +13,12 @@ public class DiseaseTest {
 	
 	@Before
 	public void doBefore(){
-		disease = new Disease("1", "disease");
+		disease = new Disease("disease");
 	}
 	
 	@Test
-	public void createDiseaseWithIdAndName(){
-		Assert.assertEquals("1", disease.getId());
+	public void createDiseaseWithName(){
+		//Assert.assertEquals("1", disease.getId());
 		Assert.assertEquals("disease", disease.getName());
 	}
 	

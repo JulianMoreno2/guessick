@@ -4,23 +4,27 @@ import domain.Disease;
 import domain.Symptom;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+//import java.util.LinkedList;
+//import java.util.List;
 import java.util.Map;
 
 public class MemoryRepository implements Repository {
 	
-	List<Disease> diseases;
+	Map<String, Disease> diseases;
+	//List<Disease> diseases; the map had the same implementation (a list was used) before
 	Map <String, Symptom> symptoms;
 	
 	public MemoryRepository(){
-		diseases = new LinkedList<Disease>();
+		//diseases = new LinkedList<Disease>();
+		diseases = new HashMap<String, Disease>();
 		symptoms = new HashMap<String, Symptom>();
 	}
 
 	@Override
 	public Disease saveDisease(Disease disease) {
-		diseases.add(disease);
+		//diseases.add(disease);
+		String diseaseName = disease.getName();
+		diseases.put(diseaseName, disease);
 		return disease;
 	}
 
@@ -37,7 +41,7 @@ public class MemoryRepository implements Repository {
 	}
 
 	@Override
-	public Disease loadDisease(String diseaseId) {
-		return diseases.get(Integer.parseInt(diseaseId));
+	public Disease loadDisease(String diseaseName) {
+		return diseases.get(diseaseName);
 	}
 }

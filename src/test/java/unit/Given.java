@@ -20,11 +20,11 @@ public class Given {
 	}
 
 	public static DiseaseDTO giveDiseaseDTO() {
-		return new DiseaseDTO("0", "diseaseDTO");
+		return new DiseaseDTO("diseaseDTO");
 	}
 
 	public static Disease giveDisease() {
-		return new Disease("0", "disease");
+		return new Disease("disease");
 	}
 
 	public static SymptomDTO giveSymptomDTO() {

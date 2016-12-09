@@ -11,8 +11,8 @@ public class LoadDiseaseResource {
 		this.diseaseAdapter = diseaseAdapter;
 	}
 
-	public Disease loadDisease(String diseaseId) {		
-		return this.diseaseAdapter.loadDisease(diseaseId);
+	public Disease loadDisease(String diseaseName) {		
+		return this.diseaseAdapter.loadDisease(diseaseName);
 	}
 
 }

@@ -30,7 +30,7 @@ public class DiseaseService {
 		return repository.saveSymptom(symptom);
 	}
 	
-	public Disease loadDisease(String diseaseId) {
-		return repository.loadDisease(diseaseId);
+	public Disease loadDisease(String diseaseName) {
+		return repository.loadDisease(diseaseName);
 	}
 }

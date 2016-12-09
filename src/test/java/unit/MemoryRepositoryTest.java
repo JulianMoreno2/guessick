@@ -37,7 +37,7 @@ public class MemoryRepositoryTest {
 		Map<String, Symptom> listSymptomsForFlu = new HashMap<String, Symptom>();
 		listSymptomsForFlu.put("0", fever);//listSymptomsForFlu.add(fever);
 		
-		when(flu.getId()).thenReturn("1");
+		//when(flu.getId()).thenReturn("1");
 		when(flu.getName()).thenReturn("gripe");
 		when(flu.getSymptoms()).thenReturn(listSymptomsForFlu);		
 		
@@ -65,6 +65,6 @@ public class MemoryRepositoryTest {
 	@Test
 	public void loadDiseaseCorrectly(){
 		repository.saveDisease(flu);
-		Assert.assertEquals("1", repository.loadDisease("0").getId());//hardcoded, it must search by id. No by position
+		Assert.assertEquals("gripe", repository.loadDisease("gripe").getName());//hardcoded, it must search by id. No by position
 }
 }

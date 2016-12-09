@@ -14,16 +14,17 @@ public class DiseaseAdapter {
 
 	public Disease saveDisease(DiseaseDTO diseaseDTO){
 		
-		String id = diseaseDTO.getId();
+		//String id = diseaseDTO.getId();
 		String name = diseaseDTO.getName();
-		Disease disease = new Disease(id, name);
+		//Disease disease = new Disease(id, name);
+		Disease disease = new Disease(name);
 		
 		this.diseaseService.saveDisease(disease);
 		
 		return disease;
 	}
 	
-	public Disease loadDisease(String diseaseId) {
-		return this.diseaseService.loadDisease(diseaseId);
+	public Disease loadDisease(String diseaseName) {
+		return this.diseaseService.loadDisease(diseaseName);
 	}
 }

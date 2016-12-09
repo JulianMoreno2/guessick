@@ -20,10 +20,10 @@ public class DiseaseResourceTest {
 		DiseaseAdapter diseaseAdapter = new DiseaseAdapter(diseaseService);
 		SaveDiseaseResource diseaseResource = new SaveDiseaseResource(diseaseAdapter);
 		
-		DiseaseDTO diseaseDTO = new DiseaseDTO("1","disease");
+		DiseaseDTO diseaseDTO = new DiseaseDTO("disease");
 		Disease disease = diseaseResource.saveDisease(diseaseDTO);
 		
-		Assert.assertEquals("1", disease.getId());
+		Assert.assertEquals("disease", disease.getName());
 	}
 	
 	@Test
@@ -36,11 +36,11 @@ public class DiseaseResourceTest {
 		
 		LoadDiseaseResource loadDiseaseResource = new LoadDiseaseResource(diseaseAdapter);
 		
-		DiseaseDTO diseaseDTO = new DiseaseDTO("1", "disease");
+		DiseaseDTO diseaseDTO = new DiseaseDTO("disease");
 		saveDiseaseResource.saveDisease(diseaseDTO);
 				
-		String diseaseId = "1";
-		Disease diseaseLoaded = loadDiseaseResource.loadDisease(diseaseId);
+		String diseaseName = "disease";
+		Disease diseaseLoaded = loadDiseaseResource.loadDisease(diseaseName);
 				
 		Assert.assertEquals("disease", diseaseLoaded.getName());
 	}
