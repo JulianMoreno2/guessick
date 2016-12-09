@@ -22,4 +22,8 @@ public class DiseaseAdapter {
 		
 		return disease;
 	}
+	
+	public Disease loadDisease(String diseaseId) {
+		return this.diseaseService.loadDisease(diseaseId);
+	}
 }

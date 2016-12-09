@@ -15,8 +15,8 @@ public class DiseaseAdapterTest {
 	@Test
 	public void saveSickAdapter(){
 		//TODO: mock
-		Repository sickRepository = new MemoryRepository();		
-		DiseaseService diseaseService = new DiseaseService(sickRepository);
+		Repository diseaseRepository = new MemoryRepository();		
+		DiseaseService diseaseService = new DiseaseService(diseaseRepository);
 		DiseaseAdapter diseaseAdapter = new DiseaseAdapter(diseaseService);
 		
 		DiseaseDTO diseaseDTO = Given.giveDiseaseDTO();
@@ -24,4 +24,19 @@ public class DiseaseAdapterTest {
 		
 		Assert.assertEquals("0", disease.getId());
 	}
+	
+	@Test
+	public void loadSymptomAdapter(){
+		Repository diseaseRepository = new MemoryRepository();		
+		DiseaseService diseaseService = new DiseaseService(diseaseRepository);
+		DiseaseAdapter diseaseAdapter = new DiseaseAdapter(diseaseService);
+		
+		DiseaseDTO diseaseDTO = Given.giveDiseaseDTO();
+		diseaseAdapter.saveDisease(diseaseDTO);
+		
+		String diseaseId = "0";
+		Assert.assertEquals(diseaseId, diseaseAdapter.loadDisease(diseaseId).getId());
+	}
+	
+	
 }

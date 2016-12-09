@@ -13,5 +13,5 @@ public interface Repository {
 
 	Symptom loadSymptom(String symptomId);
 
-	Disease loadDisease(String string);
+	Disease loadDisease(String disease);
 }

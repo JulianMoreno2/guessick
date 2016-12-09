@@ -20,4 +20,8 @@ public class DiseaseService {
 	private Symptom saveSymptom(Symptom symptom) {
 		return repository.saveSymptom(symptom);
 	}
+	
+	public Disease loadDisease(String diseaseId) {
+		return repository.loadDisease(diseaseId);
+	}
 }
