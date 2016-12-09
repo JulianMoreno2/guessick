@@ -1,6 +1,7 @@
 package db;
 
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.neo4j.cypher.internal.javacompat.ExecutionEngine;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Result;
@@ -20,7 +21,7 @@ public class testJavaNeo4jCQLQueries {
     public static void initializeDatabase() {
 
         //Database file
-        File dbFile = new File("/GuessickDB");
+        File dbFile = new File("/home/synysterlove/InformaticaMedica/guessick/GuessickDB");
 
         //Database scheme creation
         GraphDatabaseFactory dbFactory = new GraphDatabaseFactory();
@@ -30,20 +31,21 @@ public class testJavaNeo4jCQLQueries {
             s_ notes a sympthom
             d_ notes a disease
          */
-        db.execute("CREATE (d_ebola):(Ebola)");
-        db.execute("CREATE (s_fever):(Fever)");
-        db.execute("CREATE (s_headache):(Headache)");
-        db.execute("CREATE (Ebola)-[Has:has]->(Fever)");
-        db.execute("CREATE (Fever)-[Is_In:is_in]->(Ebola)");
-        db.execute("CREATE (Ebola)-[Has:has]->(Headache)");
-        db.execute("CREATE (Headache)-[Is_In:is_in]->(Ebola)");
+        db.execute("CREATE (d_ebola: Ebola)");
+        db.execute("CREATE (s_fever: Fever)");
+        db.execute("CREATE (s_headache: Headache)");
+        db.execute("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (d_ebola)-[Has:has]->(s_fever)");
+        db.execute("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_ebola)");
+        db.execute("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (d_ebola)-[Has:has]->(s_headache)");
+        db.execute("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_ebola)");
 
 
     }
 
+    @Test
     public void testGetEbolasSympthoms() {
 
-        Result ebolaResult = db.execute(""); //Obtener todos los nodos relacionados con Ebola
+        Result ebolaResult = db.execute("MATCH (d_ebola: Ebola) RETURN d_ebola"); //Obtener todos los nodos relacionados con Ebola
 
     }
     

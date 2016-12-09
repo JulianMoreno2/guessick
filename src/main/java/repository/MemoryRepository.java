@@ -34,4 +34,9 @@ public class MemoryRepository implements Repository {
 	public Symptom loadSymptom(String symptomId) {		
 		return symptoms.get(Integer.parseInt(symptomId));
 	}
+
+	@Override
+	public Disease loadDisease(String diseaseId) {
+		return diseases.get(Integer.parseInt(diseaseId));
+	}
 }
