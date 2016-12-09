@@ -31,7 +31,7 @@ public class SymptomTest {
 		//Cuando
 		fever.addDisease(flu);
 		//Entonces
-		Assert.assertEquals(Disease.class, fever.getDiseases().get(0).getClass());
+		Assert.assertEquals(Disease.class, fever.getDiseases().get("flu").getClass());
 	}
 	
 	@Test

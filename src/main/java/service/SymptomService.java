@@ -1,5 +1,8 @@
 package service;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import domain.Disease;
 import domain.Symptom;
 import repository.Repository;
@@ -14,7 +17,13 @@ public class SymptomService {
 
 	public Symptom saveSymptom(Symptom symptom) {		
 		repository.saveSymptom(symptom);
-		symptom.getDiseases().stream().map(disease -> this.saveDisease(disease));
+		//symptom.getDiseases().stream().map(disease -> this.saveDisease(disease));
+		Map<String, Disease> symptomDiseases = symptom.getDiseases();
+		Iterator<Disease> iterator = symptomDiseases.values().iterator();
+		while(iterator.hasNext()){
+			Disease currentDisease = iterator.next();
+			this.saveDisease(currentDisease);
+		}
 		return symptom;
 	}
 

@@ -13,8 +13,8 @@ import repository.Repository;
 import static org.mockito.Mockito.*;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+//import java.util.LinkedList;
+//import java.util.List;
 import java.util.Map;
 
 public class MemoryRepositoryTest {
@@ -30,8 +30,10 @@ public class MemoryRepositoryTest {
 		flu = mock(Disease.class);
 		fever = mock(Symptom.class);
 		
-		List<Disease> listSicksForFever = new LinkedList<Disease>();
-		listSicksForFever.add(flu);
+		//List<Disease> listSicksForFever = new LinkedList<Disease>();
+		//listSicksForFever.add(flu);
+		Map<String, Disease> listDiseasesForFever = new HashMap<String, Disease>();
+		listDiseasesForFever.put("1", flu);
 		
 		//List<Symptom> listSymptomsForFlu = new LinkedList<Symptom>();
 		Map<String, Symptom> listSymptomsForFlu = new HashMap<String, Symptom>();
@@ -43,7 +45,7 @@ public class MemoryRepositoryTest {
 		
 		//when(fever.getId()).thenReturn("0");
 		when(fever.getName()).thenReturn("fiebre");
-		when(fever.getDiseases()).thenReturn(listSicksForFever);
+		when(fever.getDiseases()).thenReturn(listDiseasesForFever);
 	}
 	
 	@Test
@@ -65,6 +67,6 @@ public class MemoryRepositoryTest {
 	@Test
 	public void loadDiseaseCorrectly(){
 		repository.saveDisease(flu);
-		Assert.assertEquals("gripe", repository.loadDisease("gripe").getName());//hardcoded, it must search by id. No by position
+		Assert.assertEquals("gripe", repository.loadDisease("gripe").getName());
 }
 }
