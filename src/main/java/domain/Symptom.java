@@ -8,6 +8,7 @@ import java.util.Map;
 public class Symptom {
 
 	private String name;
+    private String dbName; //Notation is 's_lowercasename' example: Fever -> s_fever
 	//private String id;
 	//private List<Disease> diseases;
 	private Map<String, Disease> diseases; // the key is the name
@@ -15,6 +16,7 @@ public class Symptom {
 	public Symptom(String name) {
 		//this.id = id;
 		this.name = name;
+        this.dbName = "s_" + name.toLowerCase();
 		this.diseases = new HashMap<String, Disease>();
 	}
 
@@ -22,6 +24,7 @@ public class Symptom {
 		return this.name;
 	}
 
+    public String getDBNodeName() { return this.dbName; }
 	/*
 	public String getId() {
 		return this.id;
