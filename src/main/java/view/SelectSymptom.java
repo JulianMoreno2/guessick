@@ -2,6 +2,7 @@ package view;
 
 import java.awt.EventQueue;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -19,6 +20,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
@@ -51,14 +54,23 @@ public class SelectSymptom {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JList<JButton> list_symptoms = new JList<JButton>();
+		DefaultListModel<String> model = new DefaultListModel<>();		
+		JList<String> list_symptoms = new JList<>(model);
 		list_symptoms.setBorder(new LineBorder(new Color(0, 0, 0)));
 		list_symptoms.setBounds(80, 46, 183, 211);
-		frame.getContentPane().add(list_symptoms);
-		
 		list_symptoms.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		list_symptoms.setLayoutOrientation(JList.VERTICAL_WRAP);
-			
+		frame.getContentPane().add(list_symptoms);
+		
+		List<String> list = new LinkedList<>();
+		list.add("Elemento 1");
+		list.add("Elemento 2");
+		list.add("Elemento 3");
+				
+		for ( int i = 0; i < list.size(); i++ ){
+			  model.addElement( list.get(i));
+		}
+					
 		JList<?> list_diseases = new JList<Object>();
 		list_diseases.setBorder(new LineBorder(new Color(0, 0, 0)));
 		list_diseases.setBounds(336, 46, 183, 211);
