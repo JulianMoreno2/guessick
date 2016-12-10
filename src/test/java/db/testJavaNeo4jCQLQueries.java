@@ -1,12 +1,15 @@
 package db;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.neo4j.driver.v1.*;
-import java.util.List;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 public class testJavaNeo4jCQLQueries {
 
@@ -18,6 +21,12 @@ public class testJavaNeo4jCQLQueries {
 
         driver = GraphDatabase.driver("bolt://localhost",AuthTokens.basic("neo4j", "1234"));
         session = driver.session();
+
+    }
+
+    @Before
+    public void resetAndSetBaseData() {
+
         session.run("MATCH (n) DETACH DELETE n"); //Delete all
 
         /*Definition of some nodes
@@ -27,11 +36,11 @@ public class testJavaNeo4jCQLQueries {
         session.run("CREATE (d_ebola: Ebola { name:'Ebola' } )");
         session.run("CREATE (s_fever: Fever { name:'Fever' } )");
         session.run("CREATE (s_headache: Headache { name:'Headache' } )");
+
         session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (d_ebola)-[Has:has]->(s_fever)");
         session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_ebola)");
         session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (d_ebola)-[Has:has]->(s_headache)");
         session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_ebola)");
-
 
     }
 
@@ -64,6 +73,61 @@ public class testJavaNeo4jCQLQueries {
         }
         Assert.assertTrue(names.contains("Headache"));
         Assert.assertTrue(names.contains("Fever"));
+
+    }
+
+    @Test
+    public void testGetAllDiseaseWithFeverAndHeadache() {
+
+        session.run("CREATE (d_flew: Flew { name:'Flew' } )");
+        session.run("CREATE (d_vih: VIH { name:'VIH' } )");
+
+
+        session.run("MATCH (d_flew: Flew),(s_fever: Fever) CREATE (d_flew)-[Has:has]->(s_fever)");
+        session.run("MATCH (d_flew: Flew),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_flew)");
+        session.run("MATCH (d_flew: Flew),(s_headache: Headache) CREATE (d_flew)-[Has:has]->(s_headache)");
+        session.run("MATCH (d_flew: Flew),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_flew)");
+
+
+        //Retrieves the id from the Fever and Headache nodes
+        StatementResult feverIdResult = session.run("MATCH (s_fever: Fever) WHERE s_fever.name = 'Fever' RETURN ID(s_fever) AS id");
+        StatementResult headacheIdResult = session.run("MATCH (s_headache: Headache) WHERE s_headache.name = 'Headache' RETURN ID(s_headache) AS id");
+
+        Record feverIdRecord = feverIdResult.next();
+        Integer fever_id = feverIdRecord.get("id").asInt();
+        String fever_id_string = fever_id.toString();
+        Record headacheIdRecord = headacheIdResult.next();
+        Integer headache_id = headacheIdRecord.get("id").asInt();
+        String headache_id_string = headache_id.toString();
+
+        //Goes to the Fever node (by its id) and retrieves the names of all nodes connected to it
+        StatementResult feverResult = session.run("START a=node(" + fever_id_string + ") MATCH (a)-[:is_in*]->(b) RETURN distinct b.name AS name");
+        Set<String> feverConnectedNodesNames = new HashSet<String>();
+        while(feverResult.hasNext()){
+
+            Record record = feverResult.next();
+            feverConnectedNodesNames.add(record.get("name").asString());
+
+        }
+
+        //Goes to the Headache node (by its id) and retrieves the names of all nodes connected to it
+        StatementResult headacheResult = session.run("START a=node(" + headache_id_string + ") MATCH (a)-[:is_in*]->(b) RETURN distinct b.name AS name");
+        Set<String> headacheConnectedNodesNames = new HashSet<String>();
+        while(headacheResult.hasNext()){
+
+            Record record = headacheResult.next();
+            headacheConnectedNodesNames.add(record.get("name").asString());
+
+        }
+
+        //Calculate the intersection between the two sets
+        Set<String> names = feverConnectedNodesNames;
+        names.retainAll(headacheConnectedNodesNames);
+
+        Assert.assertTrue(names.contains("Ebola"));
+        Assert.assertTrue(names.contains("Flew"));
+        Assert.assertFalse(names.contains("VIH"));
+
 
     }
 
