@@ -50,27 +50,18 @@ public class SelectSymptom {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 600, 400);
+		frame.setBounds(100, 100, 600, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		DefaultListModel<String> model = new DefaultListModel<>();		
-		JList<String> list_symptoms = new JList<>(model);
+		DefaultListModel<String> modelListSymptoms = new DefaultListModel<>();		
+		JList<String> list_symptoms = new JList<>(modelListSymptoms);
 		list_symptoms.setBorder(new LineBorder(new Color(0, 0, 0)));
 		list_symptoms.setBounds(80, 46, 183, 211);
 		list_symptoms.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		list_symptoms.setLayoutOrientation(JList.VERTICAL_WRAP);
 		frame.getContentPane().add(list_symptoms);
 		
-		List<String> list = new LinkedList<>();
-		list.add("Elemento 1");
-		list.add("Elemento 2");
-		list.add("Elemento 3");
-				
-		for ( int i = 0; i < list.size(); i++ ){
-			  model.addElement( list.get(i));
-		}
-					
 		JList<?> list_diseases = new JList<Object>();
 		list_diseases.setBorder(new LineBorder(new Color(0, 0, 0)));
 		list_diseases.setBounds(336, 46, 183, 211);
@@ -90,7 +81,30 @@ public class SelectSymptom {
 		
 		JTextPane txtpnInstructions = new JTextPane();
 		txtpnInstructions.setText("Instructions");
-		txtpnInstructions.setBounds(10, 280, 564, 70);
+		txtpnInstructions.setBounds(10, 380, 564, 70);
 		frame.getContentPane().add(txtpnInstructions);
+		
+		JButton btnChooseDisease = new JButton("Choose");
+		btnChooseDisease.setBounds(379, 268, 89, 23);
+		frame.getContentPane().add(btnChooseDisease);
+		
+		JButton btnAddSymptoms = new JButton("Add");
+		btnAddSymptoms.setBounds(127, 268, 89, 23);
+		frame.getContentPane().add(btnAddSymptoms);
+		
+		JButton btnSearchDiseases = new JButton("->");
+		btnSearchDiseases.setBounds(273, 141, 50, 23);
+		frame.getContentPane().add(btnSearchDiseases);
+	}
+
+	private void addSymptoms(DefaultListModel<String> modelListSymptoms) {
+		List<String> list = new LinkedList<>();
+		list.add("Elemento 1");
+		list.add("Elemento 2");
+		list.add("Elemento 3");
+				
+		for ( int i = 0; i < list.size(); i++ ){
+			  modelListSymptoms.addElement( list.get(i));
+		}
 	}
 }
