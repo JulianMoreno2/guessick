@@ -57,6 +57,7 @@ public class Main {
 		btnStart.setBounds(173, 178, 89, 23);
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				frame.setVisible(false);
 				SelectSymptom.NewWindow(initializer);				
 			}
 		});
