@@ -99,9 +99,7 @@ public class SelectSymptom {
 		btnAddSymptoms.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				String symptomToAdd = list_symptoms.getSelectedValue();
-				if(!symptomsSelected.contains(symptomToAdd)){
-					symptomsSelected.add(symptomToAdd);
-				}
+				symptomsSelected.add(symptomToAdd);				
 			}
 		});
 	}

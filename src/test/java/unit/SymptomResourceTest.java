@@ -1,13 +1,12 @@
 package unit;
 
-import org.junit.Test;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 
 import domain.Symptom;
 import repository.MemoryRepository;
 import repository.Repository;
-import resources.LoadSymptomResource;
 import resources.SaveSymptomResource;
 import service.SymptomService;
 
@@ -32,19 +31,5 @@ public class SymptomResourceTest {
 		
 		Assert.assertEquals("symptom", symptomReturned.getName());
 	}
-	
-	@Test
-	public void symptomResourceLoadSymptom(){
-		
-		LoadSymptomResource loadSymptomResource = new LoadSymptomResource(symptomService);
-		
-		Symptom symptom = new Symptom("symptom");
-		saveSymptomResource.saveSyptom(symptom);
-				
-		String symptomName = "symptom";
-		Symptom symptomLoaded = loadSymptomResource.loadSymptom(symptomName);
-				
-		Assert.assertEquals("symptom", symptomLoaded.getName());
-	}
-	
+
 }

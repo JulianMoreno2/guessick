@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import domain.Disease;
 import domain.Symptom;
@@ -37,6 +38,6 @@ public class DiseaseService {
 	}
 
 	public List<Disease> loadPossibleDiseases(Set<String> nameSymptoms) {
-		return repository.loadPossibleDiseases(nameSymptoms);
+		return repository.loadPossibleDiseases(nameSymptoms.stream().collect(Collectors.toList()));
 	}
 }

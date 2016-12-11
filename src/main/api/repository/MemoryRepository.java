@@ -38,17 +38,12 @@ public class MemoryRepository implements Repository {
 	}
 
 	@Override
-	public Symptom loadSymptom(String symptomName) {		
-		return symptoms.get(symptomName);
-	}
-
-	@Override
 	public Disease loadDisease(String diseaseName) {
 		return diseases.get(diseaseName);
 	}
 
 	@Override
-	public List<Disease> loadPossibleDiseases(Set<String> nameSymptoms) {
+	public List<Disease> loadPossibleDiseases(List<String> nameSymptoms) {
 		// TODO Auto-generated method stub
 		return null;
 	}
