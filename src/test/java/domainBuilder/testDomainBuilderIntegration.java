@@ -12,6 +12,9 @@ import org.neo4j.driver.v1.GraphDatabase;
 import org.neo4j.driver.v1.Session;
 import repository.neo4J.DomainBuilder;
 
+import java.util.List;
+import java.util.LinkedList;
+
 /**
  * Created by synysterlove on 11/12/16.
  */
@@ -40,6 +43,7 @@ public class testDomainBuilderIntegration {
         */
         session.run("CREATE (d_ebola: Ebola { name:'Ebola' , type:'disease' } )");
         session.run("CREATE (d_vih: VIH { name:'VIH' , type:'disease' } )");
+        session.run("CREATE (d_flew: Flew { name:'Flew' , type:'disease' } )");
         session.run("CREATE (s_fever: Fever { name:'Fever' , type:'symptom' } )");
         session.run("CREATE (s_headache: Headache { name:'Headache' , type:'symptom' } )");
 
@@ -47,6 +51,10 @@ public class testDomainBuilderIntegration {
         session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_ebola)");
         session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (d_ebola)-[Has:has]->(s_headache)");
         session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_ebola)");
+        session.run("MATCH (d_flew: Flew),(s_fever: Fever) CREATE (d_flew)-[Has:has]->(s_fever)");
+        session.run("MATCH (d_flew: Flew),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_flew)");
+        session.run("MATCH (d_flew: Flew),(s_headache: Headache) CREATE (d_flew)-[Has:has]->(s_headache)");
+        session.run("MATCH (d_flew: Flew),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_flew)");
 
     }
 
@@ -79,6 +87,22 @@ public class testDomainBuilderIntegration {
         Assert.assertEquals("VIH", vih.getName());
 
         Assert.assertTrue(vih.getSymptoms().isEmpty());
+
+    }
+
+    @Test
+    public void testBuildFlewAndEbolaGivenFeverAndHeadache() {
+
+        List<String> symptoms = new LinkedList<String>();
+        symptoms.add("Fever");
+        symptoms.add("Headache");
+        List<Disease> diseases = this.builder.buildDiseasesGivenSymptomNames(symptoms);
+
+        for (Disease disease : diseases) {
+
+            Assert.assertTrue(disease.getName().equals("Ebola") || disease.getName().equals("Flew"));
+
+        }
 
     }
 
