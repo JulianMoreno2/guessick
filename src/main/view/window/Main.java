@@ -12,8 +12,6 @@ import java.awt.event.ActionEvent;
 public class Main {
 
 	private JFrame frame;
-	private ResourceContainer initializer;
-
 	/**
 	 * Launch the application.
 	 */
@@ -35,7 +33,7 @@ public class Main {
 	}
 
 	private void initialize() {		
-		initializer = new ResourceContainer();
+		new ResourceContainer();
 		frame = new FrameBackground("Guessick", "../Medicina.jpg");
 		frame.setBounds(100, 100, 600, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +49,7 @@ public class Main {
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);
-				SelectSymptom.NewWindow(initializer);				
+				SelectSymptom.NewWindow();				
 			}
 		});
 		return btnStart;

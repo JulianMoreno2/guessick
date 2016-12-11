@@ -51,4 +51,10 @@ public class MemoryRepository implements Repository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Symptom> loadAllSymptoms() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

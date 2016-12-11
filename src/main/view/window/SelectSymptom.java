@@ -27,13 +27,14 @@ import javax.swing.ListSelectionModel;
 public class SelectSymptom {
 
 	private JFrame frame;
+	Core core;
 	private ResourceContainer initializer;
 
-	public static void NewWindow(ResourceContainer initializer) {
+	public static void NewWindow() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SelectSymptom window = new SelectSymptom(initializer);
+					SelectSymptom window = new SelectSymptom();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +43,8 @@ public class SelectSymptom {
 		});
 	}
 
-	public SelectSymptom(ResourceContainer initializer) {
+	public SelectSymptom() {
+		core = new Core();
 		initialize();
 	}
 
@@ -55,7 +57,7 @@ public class SelectSymptom {
 		DefaultListModel<String> modelListSymptoms = new DefaultListModel<>();
 		DefaultListModel<String> modelListDiseases = new DefaultListModel<>();
 		List<String> symptomsSelected = new LinkedList<String>();		
-		Core core = new Core();
+		
 		this.addSymptoms(modelListSymptoms);//despues sacarlo
 		
 		JList<String> list_symptoms = addSymptomsJList(modelListSymptoms);
@@ -69,13 +71,12 @@ public class SelectSymptom {
 
 		addJButtonChooseDisease(list_diseases);
 		
-		addJButtonSearchDiseases(modelListDiseases, symptomsSelected, core);
+		addJButtonSearchDiseases(modelListDiseases, symptomsSelected);
 		
 		addJTextPaneViewInstructions();
 	}
 
-	private void addJButtonSearchDiseases(DefaultListModel<String> modelListDiseases, List<String> symptomsSelected,
-			Core core) {
+	private void addJButtonSearchDiseases(DefaultListModel<String> modelListDiseases, List<String> symptomsSelected) {
 		JButton btnSearchDiseases = new JButton("->");
 		btnSearchDiseases.setBounds(273, 141, 50, 23);
 		frame.getContentPane().add(btnSearchDiseases);
@@ -162,31 +163,7 @@ public class SelectSymptom {
 	//lo mas prolijo seria lo segundo
 	//Esto es una prueba que hice, y la deje para que la vean, obvio que este metodo no corresponde a esta clase, va en el core
 	private void addSymptoms(DefaultListModel<String> modelListSymptoms) {
-		List<String> list = new LinkedList<>();
-		list.add("Elemento 1");
-		list.add("Elemento 2");
-		list.add("Elemento 3");
-		list.add("E4");
-		list.add("Elemento 1");
-		list.add("Elemento 2");
-		list.add("Elemento 3");
-		list.add("E4");
-		list.add("Elemento 1");
-		list.add("Elemento 2");
-		list.add("Elemento 3");
-		list.add("E4");
-		list.add("Elemento 1");
-		list.add("Elemento 2");
-		list.add("Elemento 3");
-		list.add("E4");
-		list.add("Elemento 1");
-		list.add("Elemento 2");
-		list.add("Elemento 3");
-		list.add("E4");
-		list.add("Elemento 1");
-		list.add("Elemento 2");
-		list.add("Elemento 3");
-		list.add("E4");
+		List<String> list = this.core.getAllSymptoms();
 				
 		for ( int i = 0; i < list.size(); i++ ){
 			  modelListSymptoms.addElement( list.get(i));
