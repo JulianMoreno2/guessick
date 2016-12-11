@@ -1,18 +1,19 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
-
 import core.Initializer;
-
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Main {
 
 	private JFrame frame;
+	private JLabel lbl_presentation;
 	private Initializer initializer;
 
 	/**
@@ -43,10 +44,18 @@ public class Main {
 	 */
 	private void initialize() {
 		initializer = new Initializer();
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		lbl_presentation = new JLabel();
+		lbl_presentation.setText("¡ Welcome to Guessick !");
+		lbl_presentation.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
+		lbl_presentation.setBounds(30, 0, 500, 250);
+		lbl_presentation.setHorizontalTextPosition(JLabel.CENTER);
+		frame.add(lbl_presentation);
 		
 		JButton btnStart = btnStart();		
 		frame.getContentPane().add(btnStart);
