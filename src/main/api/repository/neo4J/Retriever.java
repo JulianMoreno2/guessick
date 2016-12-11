@@ -37,6 +37,7 @@ public class Retriever {
                 diseaseNames.add(record.get("name").asString());
 
             }
+            listOfDiseaseSets.add(diseaseNames);
 
         }
 
