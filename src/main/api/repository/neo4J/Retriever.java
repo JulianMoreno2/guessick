@@ -114,4 +114,19 @@ public class Retriever {
         return record.get("id").asInt();
 
     }
+
+    public List<String> retrieveAllSymptoms() {
+
+        List<String> symptomNames = new LinkedList<String>();
+        String query = "MATCH(n) WHERE n.type = 'symptom' RETURN n.name AS name";
+        StatementResult result = this.session.run(query);
+        while (result.hasNext()) {
+
+            Record record = result.next();
+            symptomNames.add(record.get("name").asString());
+
+        }
+        return symptomNames;
+
+    }
 }

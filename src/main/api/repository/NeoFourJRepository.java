@@ -37,8 +37,7 @@ public class NeoFourJRepository implements Repository{
 
 	@Override
 	public List<Symptom> loadAllSymptoms() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.builder.buildAllSymptoms();
 	}
 
 }

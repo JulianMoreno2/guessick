@@ -77,4 +77,12 @@ public class DomainBuilder {
         return symptoms;
 
     }
+
+    public List<Symptom> buildAllSymptoms() {
+
+        List<String> symptomNames = this.retriever.retrieveAllSymptoms();
+        List<Symptom> symptoms = this.modelSymptomObjects(symptomNames);
+        return symptoms;
+
+    }
 }
