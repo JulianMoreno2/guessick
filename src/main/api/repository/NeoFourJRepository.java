@@ -35,4 +35,10 @@ public class NeoFourJRepository implements Repository{
 		return null;
 	}
 
+	@Override
+	public List<Disease> loadPossibleDiseases(List<String> nameSymptoms) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

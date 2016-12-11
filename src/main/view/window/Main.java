@@ -2,7 +2,7 @@ package window;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
-import core.Initializer;
+import core.ResourceContainer;
 import view.FrameBackground;
 
 import javax.swing.JButton;
@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 public class Main {
 
 	private JFrame frame;
-	private Initializer initializer;
+	private ResourceContainer initializer;
 
 	/**
 	 * Launch the application.
@@ -35,7 +35,7 @@ public class Main {
 	}
 
 	private void initialize() {		
-		initializer = new Initializer();
+		initializer = new ResourceContainer();
 		frame = new FrameBackground("Guessick", "../Medicina.jpg");
 		frame.setBounds(100, 100, 600, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

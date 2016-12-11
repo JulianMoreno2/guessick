@@ -14,4 +14,6 @@ public interface Repository {
 	Symptom loadSymptom(String symptomId);
 
 	Disease loadDisease(String disease);
+
+	List<Disease> loadPossibleDiseases(List<String> nameSymptoms);
 }

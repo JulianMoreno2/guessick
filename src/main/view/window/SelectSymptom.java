@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import core.Core;
-import core.Initializer;
+import core.ResourceContainer;
 import view.FrameBackground;
 
 import javax.swing.JList;
@@ -27,9 +27,9 @@ import javax.swing.ListSelectionModel;
 public class SelectSymptom {
 
 	private JFrame frame;
-	private Initializer initializer;
+	private ResourceContainer initializer;
 
-	public static void NewWindow(Initializer initializer) {
+	public static void NewWindow(ResourceContainer initializer) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -42,7 +42,7 @@ public class SelectSymptom {
 		});
 	}
 
-	public SelectSymptom(Initializer initializer) {
+	public SelectSymptom(ResourceContainer initializer) {
 		initialize();
 	}
 
@@ -152,7 +152,7 @@ public class SelectSymptom {
 		JList<String> list_symptoms = new JList<>(modelListSymptoms);
 		list_symptoms.setBorder(new LineBorder(new Color(0, 0, 0)));
 		list_symptoms.setBounds(80, 46, 183, 211);
-		list_symptoms.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		list_symptoms.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		list_symptoms.setLayoutOrientation(JList.VERTICAL_WRAP);
 		frame.getContentPane().add(list_symptoms);
 		return list_symptoms;
@@ -163,6 +163,26 @@ public class SelectSymptom {
 	//Esto es una prueba que hice, y la deje para que la vean, obvio que este metodo no corresponde a esta clase, va en el core
 	private void addSymptoms(DefaultListModel<String> modelListSymptoms) {
 		List<String> list = new LinkedList<>();
+		list.add("Elemento 1");
+		list.add("Elemento 2");
+		list.add("Elemento 3");
+		list.add("E4");
+		list.add("Elemento 1");
+		list.add("Elemento 2");
+		list.add("Elemento 3");
+		list.add("E4");
+		list.add("Elemento 1");
+		list.add("Elemento 2");
+		list.add("Elemento 3");
+		list.add("E4");
+		list.add("Elemento 1");
+		list.add("Elemento 2");
+		list.add("Elemento 3");
+		list.add("E4");
+		list.add("Elemento 1");
+		list.add("Elemento 2");
+		list.add("Elemento 3");
+		list.add("E4");
 		list.add("Elemento 1");
 		list.add("Elemento 2");
 		list.add("Elemento 3");

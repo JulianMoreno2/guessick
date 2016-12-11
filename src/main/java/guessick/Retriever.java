@@ -8,9 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by synysterlove on 10/12/16.
- */
 public class Retriever {
 
     private Session session;

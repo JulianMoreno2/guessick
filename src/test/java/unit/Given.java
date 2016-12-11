@@ -2,8 +2,6 @@ package unit;
 
 import domain.Disease;
 import domain.Symptom;
-import dto.DiseaseDTO;
-import dto.SymptomDTO;
 import repository.MemoryRepository;
 import repository.Repository;
 
@@ -19,18 +17,10 @@ public class Given {
 		return repository;
 	}
 
-	public static DiseaseDTO giveDiseaseDTO() {
-		return new DiseaseDTO("diseaseDTO");
-	}
-
 	public static Disease giveDisease() {
-		return new Disease("disease");
+		return new Disease("diseaseDTO");
 	}
 
-	public static SymptomDTO giveSymptomDTO() {
-		return new SymptomDTO("symptomDTO");
-	}
-	
 	public static Symptom giveSymptom() {
 		return new Symptom("symptom");
 	}

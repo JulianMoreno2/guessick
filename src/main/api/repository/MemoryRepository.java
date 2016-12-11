@@ -4,6 +4,7 @@ import domain.Disease;
 import domain.Symptom;
 
 import java.util.HashMap;
+import java.util.List;
 //import java.util.LinkedList;
 //import java.util.List;
 import java.util.Map;
@@ -43,5 +44,11 @@ public class MemoryRepository implements Repository {
 	@Override
 	public Disease loadDisease(String diseaseName) {
 		return diseases.get(diseaseName);
+	}
+
+	@Override
+	public List<Disease> loadPossibleDiseases(List<String> nameSymptoms) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

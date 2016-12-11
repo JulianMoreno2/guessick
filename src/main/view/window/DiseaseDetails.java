@@ -13,7 +13,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 
 import core.Core;
-import core.Initializer;
+import core.ResourceContainer;
 
 import javax.swing.JButton;
 import java.awt.BorderLayout;
@@ -22,9 +22,9 @@ public class DiseaseDetails {
 
 	private JFrame frame;
 	private static String disease;
-	private Initializer initializer;
+	private ResourceContainer initializer;
 
-	public static void NewWindow(Initializer initializer, String disease_selected) {
+	public static void NewWindow(ResourceContainer initializer, String disease_selected) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -38,13 +38,10 @@ public class DiseaseDetails {
 		disease = disease_selected;
 	}
 	
-	public DiseaseDetails(Initializer initializer) {
+	public DiseaseDetails(ResourceContainer initializer) {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);

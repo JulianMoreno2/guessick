@@ -4,9 +4,7 @@ import org.junit.Test;
 import org.junit.Assert;
 import org.junit.Before;
 
-import adapter.SymptomAdapter;
 import domain.Symptom;
-import dto.SymptomDTO;
 import repository.MemoryRepository;
 import repository.Repository;
 import resources.LoadSymptomResource;
@@ -17,33 +15,31 @@ public class SymptomResourceTest {
 	
 	Repository repository;
 	SymptomService symptomService;
-	SymptomAdapter symptomAdapter;
 	SaveSymptomResource saveSymptomResource;
 	
 	@Before
 	public void doBefore(){
 		repository = new MemoryRepository();
 		symptomService = new SymptomService(repository);
-		symptomAdapter = new SymptomAdapter(symptomService);
-		saveSymptomResource = new SaveSymptomResource(symptomAdapter);
+		saveSymptomResource = new SaveSymptomResource(symptomService);
 	}
 
 	@Test
 	public void symptomResourceSaveSymptom(){
 		
-		SymptomDTO symptomDTO = new SymptomDTO("symptom");
-		Symptom symptom = saveSymptomResource.saveSyptom(symptomDTO);
+		Symptom symptom = new Symptom("symptom");
+		Symptom symptomReturned = saveSymptomResource.saveSyptom(symptom);
 		
-		Assert.assertEquals("symptom", symptom.getName());
+		Assert.assertEquals("symptom", symptomReturned.getName());
 	}
 	
 	@Test
 	public void symptomResourceLoadSymptom(){
 		
-		LoadSymptomResource loadSymptomResource = new LoadSymptomResource(symptomAdapter);
+		LoadSymptomResource loadSymptomResource = new LoadSymptomResource(symptomService);
 		
-		SymptomDTO symptomDTO = new SymptomDTO("symptom");
-		saveSymptomResource.saveSyptom(symptomDTO);
+		Symptom symptom = new Symptom("symptom");
+		saveSymptomResource.saveSyptom(symptom);
 				
 		String symptomName = "symptom";
 		Symptom symptomLoaded = loadSymptomResource.loadSymptom(symptomName);

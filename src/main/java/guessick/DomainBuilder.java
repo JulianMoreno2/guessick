@@ -6,9 +6,6 @@ import domain.Symptom;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by synysterlove on 10/12/16.
- */
 public class DomainBuilder {
 
     private Retriever retriever;

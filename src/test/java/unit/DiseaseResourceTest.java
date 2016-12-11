@@ -1,29 +1,27 @@
 package unit;
 
-import adapter.DiseaseAdapter;
 import domain.Disease;
-import dto.DiseaseDTO;
 import org.junit.Assert;
 import org.junit.Test;
 import repository.Repository;
 import resources.LoadDiseaseResource;
+import resources.LoadPossibleDiseasesResource;
 import resources.SaveDiseaseResource;
 import service.DiseaseService;
 
 public class DiseaseResourceTest {
 	
 	@Test
-	public void sickResourceSaveSymptom(){
+	public void diseaseResourceSaveSymptom(){
 		//TODO: mock
 		Repository diseaseRepository = Given.giveMemoryRepository();
 		DiseaseService diseaseService = new DiseaseService(diseaseRepository);
-		DiseaseAdapter diseaseAdapter = new DiseaseAdapter(diseaseService);
-		SaveDiseaseResource diseaseResource = new SaveDiseaseResource(diseaseAdapter);
+		SaveDiseaseResource diseaseResource = new SaveDiseaseResource(diseaseService);
 		
-		DiseaseDTO diseaseDTO = new DiseaseDTO("disease");
-		Disease disease = diseaseResource.saveDisease(diseaseDTO);
+		Disease disease = new Disease("disease");
+		Disease diseaseReturned = diseaseResource.saveDisease(disease);
 		
-		Assert.assertEquals("disease", disease.getName());
+		Assert.assertEquals("disease", diseaseReturned.getName());
 	}
 	
 	@Test
@@ -31,17 +29,31 @@ public class DiseaseResourceTest {
 		
 		Repository diseaseRepository = Given.giveMemoryRepository();
 		DiseaseService diseaseService = new DiseaseService(diseaseRepository);
-		DiseaseAdapter diseaseAdapter = new DiseaseAdapter(diseaseService);
-		SaveDiseaseResource saveDiseaseResource = new SaveDiseaseResource(diseaseAdapter);
+		SaveDiseaseResource saveDiseaseResource = new SaveDiseaseResource(diseaseService);
 		
-		LoadDiseaseResource loadDiseaseResource = new LoadDiseaseResource(diseaseAdapter);
+		LoadDiseaseResource loadDiseaseResource = new LoadDiseaseResource(diseaseService);
 		
-		DiseaseDTO diseaseDTO = new DiseaseDTO("disease");
-		saveDiseaseResource.saveDisease(diseaseDTO);
+		Disease disease = new Disease("disease");
+		saveDiseaseResource.saveDisease(disease);
 				
 		String diseaseName = "disease";
 		Disease diseaseLoaded = loadDiseaseResource.loadDisease(diseaseName);
 				
 		Assert.assertEquals("disease", diseaseLoaded.getName());
+	}
+	
+	@Test
+	public void loadPossibleDiseasesResourceTest(){
+		
+		Repository diseaseRepository = Given.giveMemoryRepository();
+		DiseaseService diseaseService = new DiseaseService(diseaseRepository);
+		SaveDiseaseResource saveDiseaseResource = new SaveDiseaseResource(diseaseService);
+		
+		LoadPossibleDiseasesResource loadPossibleDiseasesResource = new LoadPossibleDiseasesResource(diseaseService);
+		
+		Disease disease = new Disease("disease");
+		saveDiseaseResource.saveDisease(disease);
+				
+		//Assert.assertEquals("disease", diseaseLoaded.getName());
 	}
 }

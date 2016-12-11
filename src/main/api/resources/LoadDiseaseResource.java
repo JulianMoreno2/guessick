@@ -1,18 +1,18 @@
 package resources;
 
-import adapter.DiseaseAdapter;
 import domain.Disease;
+import service.DiseaseService;
 
 public class LoadDiseaseResource {
 
-	DiseaseAdapter diseaseAdapter;
+	DiseaseService diseaseService;
 
-	public LoadDiseaseResource(DiseaseAdapter diseaseAdapter) {
-		this.diseaseAdapter = diseaseAdapter;
+	public LoadDiseaseResource(DiseaseService diseaseService) {
+		this.diseaseService = diseaseService;
 	}
 
 	public Disease loadDisease(String diseaseName) {		
-		return this.diseaseAdapter.loadDisease(diseaseName);
+		return this.diseaseService.loadDisease(diseaseName);
 	}
 
 }

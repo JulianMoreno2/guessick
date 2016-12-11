@@ -1,17 +1,17 @@
 package resources;
 
-import adapter.SymptomAdapter;
 import domain.Symptom;
+import service.SymptomService;
 
 public class LoadSymptomResource {
 	
-	SymptomAdapter symptomAdapter;
+	SymptomService symptomService;
 
-	public LoadSymptomResource(SymptomAdapter symptomAdapter) {
-		this.symptomAdapter = symptomAdapter;
+	public LoadSymptomResource(SymptomService symptomService) {
+		this.symptomService = symptomService;
 	}
 
 	public Symptom loadSymptom(String symptomName) {		
-		return this.symptomAdapter.loadSymptom(symptomName);
+		return this.symptomService.loadSymptom(symptomName);
 	}
 }

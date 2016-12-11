@@ -1,19 +1,17 @@
 package resources;
 
-import adapter.SymptomAdapter;
 import domain.Symptom;
-import dto.SymptomDTO;
+import service.SymptomService;
 
 public class SaveSymptomResource {
 	
-	SymptomAdapter symptomAdapter;
+	SymptomService symptomService;
 
-	public SaveSymptomResource(SymptomAdapter symptomAdapter) {
-		this.symptomAdapter = symptomAdapter;
+	public SaveSymptomResource(SymptomService symptomService) {
+		this.symptomService = symptomService;
 	}
 
-	public Symptom saveSyptom(SymptomDTO symptomDTO) {		
-		Symptom symptom = this.symptomAdapter.saveSymptom(symptomDTO);
-		return symptom;
+	public Symptom saveSyptom(Symptom symptom) {		
+		return this.symptomService.saveSymptom(symptom);
 	}
 }
