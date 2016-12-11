@@ -1,8 +1,9 @@
 package repository;
 
-import java.util.List;
 import domain.Disease;
 import domain.Symptom;
+
+import java.util.List;
 
 public interface Repository {
 
@@ -12,7 +13,7 @@ public interface Repository {
 
 	Disease loadDisease(String disease);
 
-	List<Disease> loadPossibleDiseases(List<String> nameSymptoms);
+	List<Disease> loadPossibleDiseases(List<String> symptomNames);
 
 	List<Symptom> loadAllSymptoms();
 }
