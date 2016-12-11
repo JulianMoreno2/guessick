@@ -159,14 +159,7 @@ public class SelectSymptom {
 		return list_symptoms;
 	}
 
-	//(para juli)esta es una de las cosas que te dije en el audio. ¿Se hardcodea con los sintomas o se busca en la base de datos?
-	//lo mas prolijo seria lo segundo
-	//Esto es una prueba que hice, y la deje para que la vean, obvio que este metodo no corresponde a esta clase, va en el core
 	private void addSymptoms(DefaultListModel<String> modelListSymptoms) {
-		List<String> list = this.core.getAllSymptoms();
-				
-		for ( int i = 0; i < list.size(); i++ ){
-			  modelListSymptoms.addElement( list.get(i));
-		}
+		this.core.getAllSymptoms().forEach(symptom -> modelListSymptoms.addElement(symptom));
 	}
 }
