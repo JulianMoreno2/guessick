@@ -1,6 +1,7 @@
 package repository;
 
 import java.util.List;
+import java.util.Set;
 
 import domain.Disease;
 import domain.Symptom;
@@ -36,7 +37,7 @@ public class NeoFourJRepository implements Repository{
 	}
 
 	@Override
-	public List<Disease> loadPossibleDiseases(List<String> nameSymptoms) {
+	public List<Disease> loadPossibleDiseases(Set<String> nameSymptoms) {
 		// TODO Auto-generated method stub
 		return null;
 	}

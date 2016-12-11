@@ -17,7 +17,7 @@ public class Core {
 	/**
 	 * ToDo: TEST
 	 */
-	public List<String> getPossibleDiseases(List<String> symptomsSelected){
+	public List<String> getPossibleDiseases(Set<String> symptomsSelected){
 		List<String> possibleDiseases = this.resourceContainer.getLoadPossibleDiseasesResource()
 				.loadPossibleDiseases(symptomsSelected)
 				.stream()
@@ -38,7 +38,10 @@ public class Core {
 		Disease disease = this.resourceContainer.getLoadDiseaseResource().loadDisease(diseaseSelected);
 		return disease.getSymptoms().keySet();
 	}
-
+	
+	/**
+	 * ToDo: TEST
+	 */
 	public List<String> getAllSymptoms() {
 		return this.resourceContainer.getLoadAllSymptomsResource()
 				.loadAllSymptoms()

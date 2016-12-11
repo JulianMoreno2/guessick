@@ -1,6 +1,7 @@
 package repository;
 
 import java.util.List;
+import java.util.Set;
 
 import domain.Disease;
 import domain.Symptom;
@@ -15,7 +16,7 @@ public interface Repository {
 
 	Disease loadDisease(String disease);
 
-	List<Disease> loadPossibleDiseases(List<String> nameSymptoms);
+	List<Disease> loadPossibleDiseases(Set<String> nameSymptoms);
 
 	List<Symptom> loadAllSymptoms();
 }

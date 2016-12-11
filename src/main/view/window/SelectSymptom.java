@@ -17,8 +17,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
@@ -56,7 +57,7 @@ public class SelectSymptom {
 		
 		DefaultListModel<String> modelListSymptoms = new DefaultListModel<>();
 		DefaultListModel<String> modelListDiseases = new DefaultListModel<>();
-		List<String> symptomsSelected = new LinkedList<String>();		
+		Set<String> symptomsSelected = new HashSet<String>();		
 		
 		this.addSymptoms(modelListSymptoms);//despues sacarlo
 		
@@ -76,7 +77,7 @@ public class SelectSymptom {
 		addJTextPaneViewInstructions();
 	}
 
-	private void addJButtonSearchDiseases(DefaultListModel<String> modelListDiseases, List<String> symptomsSelected) {
+	private void addJButtonSearchDiseases(DefaultListModel<String> modelListDiseases, Set<String> symptomsSelected) {
 		JButton btnSearchDiseases = new JButton("->");
 		btnSearchDiseases.setBounds(273, 141, 50, 23);
 		frame.getContentPane().add(btnSearchDiseases);
@@ -91,7 +92,7 @@ public class SelectSymptom {
 		});
 	}
 
-	private void addJButtonAddSymptoms(List<String> symptomsSelected, JList<String> list_symptoms) {
+	private void addJButtonAddSymptoms(Set<String> symptomsSelected, JList<String> list_symptoms) {
 		JButton btnAddSymptoms = new JButton("Add");
 		btnAddSymptoms.setBounds(127, 268, 89, 23);
 		frame.getContentPane().add(btnAddSymptoms);
