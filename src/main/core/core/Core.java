@@ -1,7 +1,7 @@
 package core;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import domain.Disease;
@@ -17,7 +17,7 @@ public class Core {
 	/**
 	 * ToDo: TEST
 	 */
-	public List<String> getPossibleDiseases(List<String> symptomsSelected){
+	public List<String> getPossibleDiseases(Set<String> symptomsSelected){
 		List<String> possibleDiseases = this.resourceContainer.getLoadPossibleDiseasesResource()
 				.loadPossibleDiseases(symptomsSelected)
 				.stream()
@@ -34,14 +34,20 @@ public class Core {
 	/**
 	 * ToDo: TEST
 	 */
-	public List<String> getDiseaseDetails(String diseaseSelected) {
+	public Set<String> getDiseaseDetails(String diseaseSelected) {
 		Disease disease = this.resourceContainer.getLoadDiseaseResource().loadDisease(diseaseSelected);
-		List<String> diseaseDetails = new LinkedList<String>();
-		//aca deberia haber logica
-		diseaseDetails.add("Hacer reposo");
-		diseaseDetails.add("Visitar al medico");
-		//
-		return diseaseDetails;
+		return disease.getSymptoms().keySet();
+	}
+	
+	/**
+	 * ToDo: TEST
+	 */
+	public List<String> getAllSymptoms() {
+		return this.resourceContainer.getLoadAllSymptomsResource()
+				.loadAllSymptoms()
+				.stream()
+				.map(symptom -> symptom.getName())
+				.collect(Collectors.toList());
 	}
 	
 }

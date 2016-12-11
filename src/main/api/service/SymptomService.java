@@ -1,6 +1,7 @@
 package service;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import domain.Disease;
@@ -33,5 +34,9 @@ public class SymptomService {
 
 	public Symptom loadSymptom(String symptomId) {
 		return repository.loadSymptom(symptomId);
+	}
+	
+	public List<Symptom> loadAllSymptoms() {
+		return repository.loadAllSymptoms();
 	}
 }

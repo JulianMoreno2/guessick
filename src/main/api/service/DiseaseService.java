@@ -3,6 +3,7 @@ package service;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import domain.Disease;
 import domain.Symptom;
@@ -35,7 +36,7 @@ public class DiseaseService {
 		return repository.loadDisease(diseaseName);
 	}
 
-	public List<Disease> loadPossibleDiseases(List<String> nameSymptoms) {
+	public List<Disease> loadPossibleDiseases(Set<String> nameSymptoms) {
 		return repository.loadPossibleDiseases(nameSymptoms);
 	}
 }

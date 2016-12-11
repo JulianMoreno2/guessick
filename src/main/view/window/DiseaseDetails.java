@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.util.Set;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -22,13 +22,11 @@ public class DiseaseDetails {
 
 	private JFrame frame;
 	private static String disease;
-	private ResourceContainer initializer;
-
 	public static void NewWindow(ResourceContainer initializer, String disease_selected) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DiseaseDetails window = new DiseaseDetails(initializer);
+					DiseaseDetails window = new DiseaseDetails();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +36,7 @@ public class DiseaseDetails {
 		disease = disease_selected;
 	}
 	
-	public DiseaseDetails(ResourceContainer initializer) {
+	public DiseaseDetails() {
 		initialize();
 	}
 
@@ -51,35 +49,33 @@ public class DiseaseDetails {
 		// que haya para esa enfermedad
 		DefaultListModel<String> modelListDetails = new DefaultListModel<>();
 		//
-		List<String> diseaseDetails = this.getDetails(disease);
+		Set<String> diseaseDetails = this.getDetails(disease);
 		this.addDetails(modelListDetails, diseaseDetails);
 		
-		JList<String> list_disease_detail = new JList<>(modelListDetails);
-		list_disease_detail.setBorder(new LineBorder(new Color(0, 0, 0)));
-		list_disease_detail.setBounds(80, 76, 383, 241);
-		list_disease_detail.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		list_disease_detail.setLayoutOrientation(JList.VERTICAL_WRAP);
-		frame.getContentPane().add(list_disease_detail);
+		JList<String> list_symptoms = new JList<>(modelListDetails);
+		list_symptoms.setBorder(new LineBorder(new Color(0, 0, 0)));
+		list_symptoms.setBounds(80, 76, 383, 241);
+		list_symptoms.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		list_symptoms.setLayoutOrientation(JList.VERTICAL_WRAP);
+		frame.getContentPane().add(list_symptoms);
 		
 		JButton btnBack = new JButton("Back");
 		frame.getContentPane().add(btnBack, BorderLayout.SOUTH);
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);
-				SelectSymptom.NewWindow(initializer);
+				SelectSymptom.NewWindow();
 			}
 		});
 	}
 
-	private List<String> getDetails(String disease_selected) {
+	private Set<String> getDetails(String disease_selected) {
 		Core claseSinNombre = new Core();
 		return claseSinNombre.getDiseaseDetails(disease_selected);
 	}
 	
-	private void addDetails(DefaultListModel<String> modelListDetails, List<String> details) {
-		for ( int i = 0; i < details.size(); i++ ){
-			  modelListDetails.addElement( details.get(i));
-		}
+	private void addDetails(DefaultListModel<String> modelListDetails, Set<String> details) {
+		details.stream().forEach(symptom -> modelListDetails.addElement(symptom));
 	}
 
 }

@@ -8,6 +8,7 @@ import java.util.List;
 //import java.util.LinkedList;
 //import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class MemoryRepository implements Repository {
 	
@@ -47,7 +48,13 @@ public class MemoryRepository implements Repository {
 	}
 
 	@Override
-	public List<Disease> loadPossibleDiseases(List<String> nameSymptoms) {
+	public List<Disease> loadPossibleDiseases(Set<String> nameSymptoms) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Symptom> loadAllSymptoms() {
 		// TODO Auto-generated method stub
 		return null;
 	}
