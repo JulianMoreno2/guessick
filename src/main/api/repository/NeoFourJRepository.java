@@ -25,19 +25,13 @@ public class NeoFourJRepository implements Repository{
 	}
 
 	@Override
-	public Symptom loadSymptom(String symptomId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Disease loadDisease(String diseaseId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Disease> loadPossibleDiseases(Set<String> nameSymptoms) {
+	public List<Disease> loadPossibleDiseases(List<String> nameSymptoms) {
 		// TODO Auto-generated method stub
 		return null;
 	}

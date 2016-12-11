@@ -12,11 +12,9 @@ public interface Repository {
 
 	Symptom saveSymptom(Symptom symptom);
 
-	Symptom loadSymptom(String symptomId);
-
 	Disease loadDisease(String disease);
 
-	List<Disease> loadPossibleDiseases(Set<String> nameSymptoms);
+	List<Disease> loadPossibleDiseases(List<String> nameSymptoms);
 
 	List<Symptom> loadAllSymptoms();
 }

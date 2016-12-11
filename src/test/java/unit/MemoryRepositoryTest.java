@@ -59,12 +59,6 @@ public class MemoryRepositoryTest {
 	}
 	
 	@Test
-	public void loadSymptomCorrectly(){
-		repository.saveSymptom(fever);
-		Assert.assertEquals("fiebre", repository.loadSymptom("fiebre").getName());
-	}
-
-	@Test
 	public void loadDiseaseCorrectly(){
 		repository.saveDisease(flu);
 		Assert.assertEquals("gripe", repository.loadDisease("gripe").getName());

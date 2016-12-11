@@ -29,15 +29,4 @@ public class SymptomServiceTest {
 		Assert.assertEquals(symptomSaved.getName(), symptom.getName());
 	}
 	
-	@Test
-	public void loadSymptomTest(){
-		
-		Symptom symptomSaved = new Symptom("symptom");
-		symptomService.saveSymptom(symptomSaved);
-		
-		String symptomName = "symptom";
-		
-		Assert.assertEquals(symptomSaved.getName(), symptomService.loadSymptom(symptomName).getName());
-	}
-	
 }

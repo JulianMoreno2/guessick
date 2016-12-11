@@ -31,10 +31,6 @@ public class SymptomService {
 	private Disease saveDisease(Disease disease) {
 		return repository.saveDisease(disease);
 	}
-
-	public Symptom loadSymptom(String symptomId) {
-		return repository.loadSymptom(symptomId);
-	}
 	
 	public List<Symptom> loadAllSymptoms() {
 		return repository.loadAllSymptoms();
