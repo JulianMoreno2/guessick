@@ -1,4 +1,4 @@
-package guessick;
+package repository.neo4J;
 
 import domain.Symptom;
 import org.neo4j.driver.v1.*;

@@ -1,4 +1,4 @@
-package guessick;
+package repository.neo4J;
 
 import domain.Disease;
 import domain.Symptom;
