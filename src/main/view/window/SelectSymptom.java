@@ -1,4 +1,4 @@
-package view;
+package window;
 
 import java.awt.EventQueue;
 
@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import core.ClaseSinNombre;
 import core.Initializer;
+
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;

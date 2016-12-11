@@ -23,7 +23,7 @@ public class FrameBackground extends JFrame {
 	private PanelBackground getJContentPane(){
 		
 		if(jContentPane == null){
-			jContentPane = new PanelBackground("Medicina.jpg");
+			jContentPane = new PanelBackground("../Medicina.jpg");
 			jContentPane.setLayout(new BorderLayout());
 		}
 		
