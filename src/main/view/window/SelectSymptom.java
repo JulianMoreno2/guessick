@@ -18,6 +18,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -68,7 +69,7 @@ public class SelectSymptom {
 		JList<String> list_diseases = addDiseasesJList(modelListDiseases);				
 		addDiseasesLabel();
 				
-		addJButtonAddSymptoms(symptomsSelected, list_symptoms);
+		addJButtonAddSymptoms(modelListDiseases, symptomsSelected, list_symptoms);
 
 		addJButtonChooseDisease(list_diseases);
 		
@@ -86,20 +87,21 @@ public class SelectSymptom {
 				modelListDiseases.clear();//to not repeat the same diseases each time that this button is clicked
 				List<String> possibleDiseases = core.getPossibleDiseases(symptomsSelected);
 				for ( int i = 0; i < possibleDiseases.size(); i++ ){
-					  modelListDiseases.addElement( possibleDiseases.get(i));
+					  modelListDiseases.addElement(possibleDiseases.get(i));
 				}
 			}
 		});
 	}
 
-	private void addJButtonAddSymptoms(Set<String> symptomsSelected, JList<String> list_symptoms) {
+	private void addJButtonAddSymptoms(DefaultListModel<String> modelListSymptoms, Set<String> symptomsSelected, JList<String> list_symptoms) {
 		JButton btnAddSymptoms = new JButton("Add");
 		btnAddSymptoms.setBounds(127, 268, 89, 23);
 		frame.getContentPane().add(btnAddSymptoms);
 		btnAddSymptoms.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				String symptomToAdd = list_symptoms.getSelectedValue();
-				symptomsSelected.add(symptomToAdd);				
+				symptomsSelected.add(symptomToAdd);
+				//modelListSymptoms.remove(list_symptoms.getSelectedIndex());
 			}
 		});
 	}
@@ -152,13 +154,23 @@ public class SelectSymptom {
 		JList<String> list_symptoms = new JList<>(modelListSymptoms);
 		list_symptoms.setBorder(new LineBorder(new Color(0, 0, 0)));
 		list_symptoms.setBounds(80, 46, 183, 211);
-		list_symptoms.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		list_symptoms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list_symptoms.setLayoutOrientation(JList.VERTICAL_WRAP);
 		frame.getContentPane().add(list_symptoms);
 		return list_symptoms;
 	}
 
 	private void addSymptoms(DefaultListModel<String> modelListSymptoms) {
-		this.core.getAllSymptoms().forEach(symptom -> modelListSymptoms.addElement(symptom));
+		
+		List<String> list = new LinkedList<>();
+		list.add("Elemento 1");
+		list.add("Elemento 2");
+		list.add("Elemento 3");
+		list.add("E4");
+				
+		for ( int i = 0; i < list.size(); i++ ){
+			  modelListSymptoms.addElement( list.get(i));
+		}
+		//this.core.getAllSymptoms().forEach(symptom -> modelListSymptoms.addElement(symptom));
 	}
 }
