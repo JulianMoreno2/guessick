@@ -1,14 +1,11 @@
 package window;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import javax.swing.JFrame;
 import core.Initializer;
 import view.FrameBackground;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

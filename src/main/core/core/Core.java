@@ -3,8 +3,10 @@ package core;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ClaseSinNombre {
-	//no se que nombre ponerle a la clase que se encarga de la logica de la view
+public class Core {
+	/**
+	 * ToDo: TEST
+	 */
 	public List<String> getPossibleDiseases(List<String> symptomsSelected){
 		List<String> possibleDiseases = new LinkedList<String>();
 		//aca deberia haber logica

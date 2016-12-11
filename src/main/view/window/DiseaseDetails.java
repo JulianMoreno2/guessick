@@ -12,7 +12,7 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 
-import core.ClaseSinNombre;
+import core.Core;
 import core.Initializer;
 
 import javax.swing.JButton;
@@ -75,7 +75,7 @@ public class DiseaseDetails {
 	}
 
 	private List<String> getDetails(String disease_selected) {
-		ClaseSinNombre claseSinNombre = new ClaseSinNombre();
+		Core claseSinNombre = new Core();
 		return claseSinNombre.getDiseaseDetails(disease_selected);
 	}
 	
