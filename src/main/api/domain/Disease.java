@@ -12,7 +12,7 @@ public class Disease {
     private String dbName; //Notation is 'd_lowercasename' example: Ebola -> d_ebola
 	//private List<Symptom> symptoms;
 	private Map<String, Symptom> symptoms;//the key is the id (the name) of the symptom, and the value is the symptom
-	
+
 	public Disease(String name) {
 		//this.id = id;
 		this.name = name;

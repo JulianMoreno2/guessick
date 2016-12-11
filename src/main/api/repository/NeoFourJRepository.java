@@ -1,11 +1,19 @@
 package repository;
 
-import java.util.List;
-
 import domain.Disease;
 import domain.Symptom;
+import repository.neo4J.DomainBuilder;
+
+import java.util.List;
 
 public class NeoFourJRepository implements Repository{
+
+    private DomainBuilder builder;
+
+    public NeoFourJRepository() {
+
+        this.builder = new DomainBuilder();
+    }
 
 	@Override
 	public Disease saveDisease(Disease disease) {
@@ -36,9 +44,10 @@ public class NeoFourJRepository implements Repository{
 	}
 
 	@Override
-	public List<Disease> loadPossibleDiseases(List<String> nameSymptoms) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Disease> loadPossibleDiseases(List<String> symptomNames) {
+
+        return this.builder.buildDiseasesGivenSymptomNames(symptomNames);
+
 	}
 
 }

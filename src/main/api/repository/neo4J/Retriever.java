@@ -1,5 +1,6 @@
 package repository.neo4J;
 
+import domain.Disease;
 import domain.Symptom;
 import org.neo4j.driver.v1.*;
 
@@ -79,6 +80,37 @@ public class Retriever {
 
         Driver driver = GraphDatabase.driver("bolt://localhost", AuthTokens.basic("neo4j", "1234"));
         this.session = driver.session();
+
+    }
+
+    public List<String> retrieveSymptomsFromAGivenDisease(Disease disease) {
+
+        this.initializeSession();
+        String diseaseID = this.retrieveDiseaseId(disease).toString();
+
+        String query = "START a=node(" + diseaseID + ") MATCH (a)-[:has*]->(b) RETURN distinct b.name AS name";
+        StatementResult result = this.session.run(query);
+        List<String> symptomNames = new LinkedList<String>();
+        while(result.hasNext()){
+
+            Record record = result.next();
+            symptomNames.add(record.get("name").asString());
+
+        }
+        return symptomNames;
+
+    }
+
+    private Integer retrieveDiseaseId(Disease disease) {
+
+        String diseaseName = disease.getName();
+        String nodeName = disease.getDBNodeName();
+
+        String query = "MATCH (" + nodeName + ": " + diseaseName + ") WHERE " + nodeName + ".name = '" + diseaseName + "' RETURN ID(" + nodeName + ") AS id";
+
+        StatementResult idResult = this.session.run(query);
+        Record record = idResult.next();
+        return record.get("id").asInt();
 
     }
 }
