@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import core.ClaseSinNombre;
 import core.Initializer;
+import view.FrameBackground;
 
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
@@ -52,7 +53,7 @@ public class SelectSymptom {
 	}
 
 	private void initialize() {
-		frame = new JFrame();
+		frame = new FrameBackground("Select Symptom", "../Medicina.jpg");
 		frame.setBounds(100, 100, 600, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

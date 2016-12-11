@@ -44,12 +44,8 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		addLabelPresentation();		
 		JButton btnStart = btnStart();		
 		frame.getContentPane().add(btnStart);
-	}
-
-	private void addLabelPresentation() {
 	}
 
 	private JButton btnStart() {
