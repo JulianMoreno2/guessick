@@ -33,9 +33,9 @@ public class testJavaNeo4jCQLQueries {
             s_ notes a sympthom
             d_ notes a disease
         */
-        session.run("CREATE (d_ebola: Ebola { name:'Ebola' } )");
-        session.run("CREATE (s_fever: Fever { name:'Fever' } )");
-        session.run("CREATE (s_headache: Headache { name:'Headache' } )");
+        session.run("CREATE (d_ebola: Ebola { name:'Ebola' , type:'disease' } )");
+        session.run("CREATE (s_fever: Fever { name:'Fever' , type:'symptom' } )");
+        session.run("CREATE (s_headache: Headache { name:'Headache' , type:'symptom' } )");
 
         session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (d_ebola)-[Has:has]->(s_fever)");
         session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_ebola)");
@@ -79,8 +79,8 @@ public class testJavaNeo4jCQLQueries {
     @Test
     public void testGetAllDiseaseWithFeverAndHeadache() {
 
-        session.run("CREATE (d_flew: Flew { name:'Flew' } )");
-        session.run("CREATE (d_vih: VIH { name:'VIH' } )");
+        session.run("CREATE (d_flew: Flew { name:'Flew' , type:'disease' } )");
+        session.run("CREATE (d_vih: VIH { name:'VIH' , type:'disease' } )");
 
 
         session.run("MATCH (d_flew: Flew),(s_fever: Fever) CREATE (d_flew)-[Has:has]->(s_fever)");

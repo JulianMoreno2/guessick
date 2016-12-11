@@ -17,7 +17,7 @@ public class DomainBuilder {
     }
 
     //Given a list of the symptom names, we build the model
-    public void buildDomain(List<String> symptomsNames) {
+    public List<Disease> buildDiseasesGivenSymptomNames(List<String> symptomsNames) {
 
         //First, we create all the symptom objects
         List<Symptom> symptoms = this.modelSymptomObjects(symptomsNames);
@@ -25,8 +25,28 @@ public class DomainBuilder {
         //Then, we obtain from the database the names of all diseases that have those symptoms
         List<String> diseaseNames = this.retriever.retrieveDiseasesGivenTheseSymptoms(symptoms);
         List<Disease> diseases = this.modelDiseaseObjects(diseaseNames);
+        return diseases;
 
-        //TODO: show the user these results
+    }
+
+    public Disease buildDiseaseWithAllItsSymptoms(String diseaseName) {
+
+        Disease disease = new Disease(diseaseName);
+        List<String> symptomNames = this.retriever.retrieveSymptomsFromAGivenDisease(disease);
+        List<Symptom> symptoms = this.modelSymptomObjects(symptomNames);
+        Disease fullDisease = this.assignSymptomsToDisease(disease, symptoms);
+        return fullDisease;
+
+    }
+
+    private Disease assignSymptomsToDisease(Disease disease, List<Symptom> symptoms) {
+
+        for (Symptom symptom : symptoms) {
+
+            disease.addSymptom(symptom);
+
+        }
+        return disease;
 
     }
 
