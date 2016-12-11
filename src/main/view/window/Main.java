@@ -39,7 +39,7 @@ public class Main {
 
 	private void initialize() {		
 		initializer = new Initializer();
-		frame = new FrameBackground();
+		frame = new FrameBackground("Guessick", "../Medicina.jpg");
 		frame.setBounds(100, 100, 600, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

@@ -9,21 +9,21 @@ public class FrameBackground extends JFrame {
 	private static final long  serialVersionUID = 1L;
 	private JPanel jContentPane = null;
 
-	public FrameBackground(){
+	public FrameBackground(String title, String imageUrl){
 		super();
-		intialize();
+		intialize(title,imageUrl);
 	}
 
-	private void intialize(){
+	private void intialize(String title, String imageUrl){
 		this.setSize(300, 200);
-		this.setContentPane(getJContentPane());
-		this.setTitle("Guessick");
+		this.setContentPane(getJContentPane(imageUrl));
+		this.setTitle(title);
 	}
 	
-	private PanelBackground getJContentPane(){
+	private PanelBackground getJContentPane(String imageUrl){
 		
 		if(jContentPane == null){
-			jContentPane = new PanelBackground("../Medicina.jpg");
+			jContentPane = new PanelBackground(imageUrl);
 			jContentPane.setLayout(new BorderLayout());
 		}
 		
