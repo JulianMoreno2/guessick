@@ -54,7 +54,7 @@ public class SelectSymptom {
 		
 		DefaultListModel<String> modelListSymptoms = new DefaultListModel<>();
 		DefaultListModel<String> modelListDiseases = new DefaultListModel<>();
-		List<String> symptomsSelected = new LinkedList<String>();
+		List<String> symptomsSelected = new LinkedList<String>();		
 		Core core = new Core();
 		this.addSymptoms(modelListSymptoms);//despues sacarlo
 		
