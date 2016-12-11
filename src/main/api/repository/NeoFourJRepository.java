@@ -1,10 +1,9 @@
 package repository;
 
+import java.util.List;
 import domain.Disease;
 import domain.Symptom;
 import repository.neo4J.DomainBuilder;
-
-import java.util.List;
 
 public class NeoFourJRepository implements Repository{
 
@@ -28,16 +27,12 @@ public class NeoFourJRepository implements Repository{
 
 	@Override
 	public Disease loadDisease(String diseaseName) {
-
         return this.builder.buildDiseaseWithAllItsSymptoms(diseaseName);
-
 	}
 
 	@Override
 	public List<Disease> loadPossibleDiseases(List<String> symptomNames) {
-
 		return this.builder.buildDiseasesGivenSymptomNames(symptomNames);
-
 	}
 
 	@Override
