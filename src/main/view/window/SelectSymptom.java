@@ -85,10 +85,7 @@ public class SelectSymptom {
 		btnSearchDiseases.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				modelListDiseases.clear();//to not repeat the same diseases each time that this button is clicked
-				List<String> possibleDiseases = core.getPossibleDiseases(symptomsSelected);
-				for ( int i = 0; i < possibleDiseases.size(); i++ ){
-					  modelListDiseases.addElement(possibleDiseases.get(i));
-				}
+				core.getPossibleDiseases(symptomsSelected).forEach(disease -> modelListDiseases.addElement(disease));
 			}
 		});
 	}
@@ -109,6 +106,23 @@ public class SelectSymptom {
 
 	protected void addNewSymptomSelected(List<String> listAdded, Set<String> symptomsSelected, DefaultListModel<String> modelListSymptoms) {
 		listAdded.stream().filter(symptom -> !symptomsSelected.contains(symptom)).forEach(symptom -> modelListSymptoms.addElement(symptom));
+	}
+	
+	private List<String> addSymptoms(DefaultListModel<String> modelListSymptoms) {
+		
+		List<String> list = new LinkedList<>();
+		list.add("Elemento 1");
+		list.add("Elemento 2");
+		list.add("Elemento 3");
+		list.add("Elemento 4");
+				
+		for ( int i = 0; i < list.size(); i++ ){
+			modelListSymptoms.addElement( list.get(i));
+		}
+		
+		return list;
+		//Habilitar cuando esten cargados los sintomas en la base de datos
+		//this.core.getAllSymptoms().forEach(symptom -> modelListSymptoms.addElement(symptom));
 	}
 
 	private void addJButtonChooseDisease(JList<String> list_diseases) {
@@ -165,19 +179,4 @@ public class SelectSymptom {
 		return list_symptoms;
 	}
 
-	private List<String> addSymptoms(DefaultListModel<String> modelListSymptoms) {
-		
-		List<String> list = new LinkedList<>();
-		list.add("Elemento 1");
-		list.add("Elemento 2");
-		list.add("Elemento 3");
-		list.add("E4");
-				
-		for ( int i = 0; i < list.size(); i++ ){
-			modelListSymptoms.addElement( list.get(i));
-		}
-		
-		return list;
-		//this.core.getAllSymptoms().forEach(symptom -> modelListSymptoms.addElement(symptom));
-	}
 }
