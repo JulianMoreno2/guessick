@@ -1,6 +1,7 @@
 package domainBuilder;
 
 import domain.Disease;
+import domain.Symptom;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -62,7 +63,24 @@ public class testDomainBuilderIntegration {
 
         }
 
+        for (Symptom symptom : ebola.getSymptoms().values()) {
+
+            Assert.assertTrue(symptom.getName().equals("Headache") || symptom.getName().equals("Fever"));
+
+        }
+
     }
 
-    
+    @Test
+    public void testBuildVIHWihtoutSymptoms() {
+
+        Disease vih = builder.buildDiseaseWithAllItsSymptoms("VIH");
+
+        Assert.assertEquals("VIH", vih.getName());
+
+        Assert.assertTrue(vih.getSymptoms().isEmpty());
+
+    }
+
+
 }
