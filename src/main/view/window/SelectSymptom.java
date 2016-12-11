@@ -60,7 +60,7 @@ public class SelectSymptom {
 		DefaultListModel<String> modelListDiseases = new DefaultListModel<>();
 		Set<String> symptomsSelected = new HashSet<String>();		
 		
-		this.addSymptoms(modelListSymptoms);//despues sacarlo
+		List<String> listAdded = this.addSymptoms(modelListSymptoms);//despues sacarlo
 		
 		JList<String> list_symptoms = addSymptomsJList(modelListSymptoms);
 		addSymptomsLabel();
@@ -69,7 +69,7 @@ public class SelectSymptom {
 		JList<String> list_diseases = addDiseasesJList(modelListDiseases);				
 		addDiseasesLabel();
 				
-		addJButtonAddSymptoms(modelListDiseases, symptomsSelected, list_symptoms);
+		addJButtonAddSymptoms(modelListSymptoms, symptomsSelected, list_symptoms, listAdded);
 
 		addJButtonChooseDisease(list_diseases);
 		
@@ -93,17 +93,22 @@ public class SelectSymptom {
 		});
 	}
 
-	private void addJButtonAddSymptoms(DefaultListModel<String> modelListSymptoms, Set<String> symptomsSelected, JList<String> list_symptoms) {
+	private void addJButtonAddSymptoms(DefaultListModel<String> modelListSymptoms, Set<String> symptomsSelected, JList<String> list_symptoms, List<String> listAdded) {
 		JButton btnAddSymptoms = new JButton("Add");
 		btnAddSymptoms.setBounds(127, 268, 89, 23);
 		frame.getContentPane().add(btnAddSymptoms);
 		btnAddSymptoms.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				String symptomToAdd = list_symptoms.getSelectedValue();
-				symptomsSelected.add(symptomToAdd);
-				//modelListSymptoms.remove(list_symptoms.getSelectedIndex());
+				symptomsSelected.add(symptomToAdd);	
+				modelListSymptoms.removeAllElements();
+				addNewSymptomSelected(listAdded, symptomsSelected, modelListSymptoms);
 			}
 		});
+	}
+
+	protected void addNewSymptomSelected(List<String> listAdded, Set<String> symptomsSelected, DefaultListModel<String> modelListSymptoms) {
+		listAdded.stream().filter(symptom -> !symptomsSelected.contains(symptom)).forEach(symptom -> modelListSymptoms.addElement(symptom));
 	}
 
 	private void addJButtonChooseDisease(JList<String> list_diseases) {
@@ -160,7 +165,7 @@ public class SelectSymptom {
 		return list_symptoms;
 	}
 
-	private void addSymptoms(DefaultListModel<String> modelListSymptoms) {
+	private List<String> addSymptoms(DefaultListModel<String> modelListSymptoms) {
 		
 		List<String> list = new LinkedList<>();
 		list.add("Elemento 1");
@@ -169,8 +174,10 @@ public class SelectSymptom {
 		list.add("E4");
 				
 		for ( int i = 0; i < list.size(); i++ ){
-			  modelListSymptoms.addElement( list.get(i));
+			modelListSymptoms.addElement( list.get(i));
 		}
+		
+		return list;
 		//this.core.getAllSymptoms().forEach(symptom -> modelListSymptoms.addElement(symptom));
 	}
 }
