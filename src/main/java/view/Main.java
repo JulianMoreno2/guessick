@@ -1,8 +1,8 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-
 import javax.swing.JFrame;
 import core.Initializer;
 import javax.swing.JButton;
@@ -45,7 +45,7 @@ public class Main {
 	private void initialize() {
 		initializer = new Initializer();
 
-		frame = new JFrame();
+		frame = new FrameBackground();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -53,6 +53,7 @@ public class Main {
 		lbl_presentation = new JLabel();
 		lbl_presentation.setText("¡ Welcome to Guessick !");
 		lbl_presentation.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
+		lbl_presentation.setForeground(Color.black);
 		lbl_presentation.setBounds(30, 0, 500, 250);
 		lbl_presentation.setHorizontalTextPosition(JLabel.CENTER);
 		frame.add(lbl_presentation);
@@ -72,4 +73,5 @@ public class Main {
 		});
 		return btnStart;
 	}
+
 }
