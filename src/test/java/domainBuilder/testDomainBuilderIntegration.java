@@ -96,11 +96,24 @@ public class testDomainBuilderIntegration {
         List<String> symptoms = new LinkedList<String>();
         symptoms.add("Fever");
         symptoms.add("Headache");
-        List<Disease> diseases = this.builder.buildDiseasesGivenSymptomNames(symptoms);
+        List<Disease> diseases = builder.buildDiseasesGivenSymptomNames(symptoms);
 
         for (Disease disease : diseases) {
 
             Assert.assertTrue(disease.getName().equals("Ebola") || disease.getName().equals("Flew"));
+
+        }
+
+    }
+
+    @Test
+    public void testGetAllSymptoms() {
+
+        session.run("CREATE (s_stomachache: Stmoachache { name:'Stomachache' , type:'symptom' } )");
+        List<Symptom> symptoms = builder.buildAllSymptoms();
+        for (Symptom symptom : symptoms) {
+
+            Assert.assertTrue(symptom.getName().equals("Stomachache") || symptom.getName().equals("Headache") || symptom.getName().equals("Fever"));
 
         }
 

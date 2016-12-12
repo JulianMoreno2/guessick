@@ -60,6 +60,7 @@ public class Retriever {
             diseases.add(disease);
         }
 
+        this.session.close();
         return diseases;
 
     }
@@ -98,6 +99,7 @@ public class Retriever {
             symptomNames.add(record.get("name").asString());
 
         }
+        this.session.close();
         return symptomNames;
 
     }
@@ -117,6 +119,8 @@ public class Retriever {
 
     public List<String> retrieveAllSymptoms() {
 
+        this.initializeSession();
+
         List<String> symptomNames = new LinkedList<String>();
         String query = "MATCH(n) WHERE n.type = 'symptom' RETURN n.name AS name";
         StatementResult result = this.session.run(query);
@@ -126,6 +130,7 @@ public class Retriever {
             symptomNames.add(record.get("name").asString());
 
         }
+        this.session.close();
         return symptomNames;
 
     }
