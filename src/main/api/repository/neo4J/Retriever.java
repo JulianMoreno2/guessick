@@ -94,13 +94,11 @@ public class Retriever {
     	session.run("MATCH (n) DETACH DELETE n"); //Delete all
 
         session.run("CREATE (d_ebola: Ebola { name:'Ebola' , type:'disease' } )");
+        session.run("CREATE (d_vih: VIH { name:'VIH' , type:'disease' } )");
+        session.run("CREATE (d_flew: Flew { name:'Flew' , type:'disease' } )");
         session.run("CREATE (s_fever: Fever { name:'Fever' , type:'symptom' } )");
         session.run("CREATE (s_headache: Headache { name:'Headache' , type:'symptom' } )");
-
-        session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (d_ebola)-[Has:has]->(s_fever)");
-        session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_ebola)");
-        session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (d_ebola)-[Has:has]->(s_headache)");
-        session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_ebola)");
+        session.run("CREATE (s_coughing: Coughing { name:'Coughing' , type:'symptom' } )");
 
         session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (d_ebola)-[Has:has]->(s_fever)"); 
         session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_ebola)"); 

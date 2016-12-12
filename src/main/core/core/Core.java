@@ -23,11 +23,6 @@ public class Core {
 				.stream()
 				.map(disease -> disease.getName())
 				.collect(Collectors.toList());
-		//List<String> possibleDiseases = new LinkedList<String>();
-		//aca deberia haber logica
-		possibleDiseases.add("Flu");
-		possibleDiseases.add("Conjunctivitis");
-		//
 		return possibleDiseases;
 	}
 
