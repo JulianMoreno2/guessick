@@ -29,8 +29,7 @@ import javax.swing.ListSelectionModel;
 public class SelectSymptom {
 
 	private JFrame frame;
-	Core core;
-	private ResourceContainer initializer;
+	private Core core;
 
 	public static void NewWindow() {
 		EventQueue.invokeLater(new Runnable() {
@@ -133,7 +132,7 @@ public class SelectSymptom {
 			public void actionPerformed(ActionEvent arg0) {
 				String disease_selected = list_diseases.getSelectedValue();
 				frame.setVisible(false);
-				DiseaseDetails.NewWindow(initializer, disease_selected);
+				DiseaseDetails.NewWindow(disease_selected);
 			}
 		});
 	}
