@@ -25,6 +25,7 @@ import java.util.Set;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.JTextArea;
 
 public class SelectSymptom {
 
@@ -52,11 +53,12 @@ public class SelectSymptom {
 
 	private void initialize() {
 		frame = new FrameBackground("Select Symptom", "../Medicina.jpg");
-		frame.setBounds(100, 100, 600, 500);
+		frame.setBounds(200, 200, 800, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		DefaultListModel<String> modelListSymptoms = new DefaultListModel<>();
+		DefaultListModel<String> modelListSymptomsSelected = new DefaultListModel<>();
 		DefaultListModel<String> modelListDiseases = new DefaultListModel<>();
 		Set<String> symptomsSelected = new HashSet<String>();		
 		
@@ -68,19 +70,26 @@ public class SelectSymptom {
 		//JList<?> list_diseases = new JList<Object>();
 		JList<String> list_diseases = addDiseasesJList(modelListDiseases);				
 		addDiseasesLabel();
+		
+		JList<String> list_symptoms_selected = addSymptomsSelectedJList(modelListSymptomsSelected);
+		addSymptomsSelectedLabel();
 				
-		addJButtonAddSymptoms(modelListSymptoms, symptomsSelected, list_symptoms, listAdded);
+		addJButtonAddSymptoms(modelListSymptoms, modelListSymptomsSelected, symptomsSelected, list_symptoms, listAdded);
 
 		addJButtonChooseDisease(list_diseases);
 		
 		addJButtonSearchDiseases(modelListDiseases, symptomsSelected);
 		
+		addJButtonRefresh(symptomsSelected, modelListSymptomsSelected, list_symptoms, modelListSymptoms);
+		
 		addJTextPaneViewInstructions();
 	}
 
+	
+
 	private void addJButtonSearchDiseases(DefaultListModel<String> modelListDiseases, Set<String> symptomsSelected) {
 		JButton btnSearchDiseases = new JButton("->");
-		btnSearchDiseases.setBounds(273, 141, 50, 23);
+		btnSearchDiseases.setBounds(491, 138, 50, 23);
 		frame.getContentPane().add(btnSearchDiseases);
 		btnSearchDiseases.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -90,7 +99,7 @@ public class SelectSymptom {
 		});
 	}
 
-	private void addJButtonAddSymptoms(DefaultListModel<String> modelListSymptoms, Set<String> symptomsSelected, JList<String> list_symptoms, List<String> listAdded) {
+	private void addJButtonAddSymptoms(DefaultListModel<String> modelListSymptoms, DefaultListModel<String> modelListSymptomsSelected, Set<String> symptomsSelected, JList<String> list_symptoms, List<String> listAdded) {
 		JButton btnAddSymptoms = new JButton("Add");
 		btnAddSymptoms.setBounds(127, 268, 89, 23);
 		frame.getContentPane().add(btnAddSymptoms);
@@ -100,6 +109,8 @@ public class SelectSymptom {
 				symptomsSelected.add(symptomToAdd);	
 				modelListSymptoms.removeAllElements();
 				addNewSymptomSelected(listAdded, symptomsSelected, modelListSymptoms);
+				modelListSymptomsSelected.clear();
+				symptomsSelected.forEach(symptom -> modelListSymptomsSelected.addElement(symptom));
 			}
 		});
 	}
@@ -127,7 +138,7 @@ public class SelectSymptom {
 
 	private void addJButtonChooseDisease(JList<String> list_diseases) {
 		JButton btnChooseDisease = new JButton("Choose");
-		btnChooseDisease.setBounds(379, 268, 89, 23);
+		btnChooseDisease.setBounds(603, 269, 89, 23);
 		frame.getContentPane().add(btnChooseDisease);
 		btnChooseDisease.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -138,6 +149,20 @@ public class SelectSymptom {
 		});
 	}
 
+	private void addJButtonRefresh(Set<String> symptomsSelected, DefaultListModel<String> modelListSymptomsSelected, JList<String> list_symptoms, DefaultListModel<String> modelListSymptoms) {
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.setBounds(337, 267, 117, 25);
+		frame.getContentPane().add(btnRefresh);
+		btnRefresh.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				symptomsSelected.clear();
+				modelListSymptomsSelected.clear();
+				modelListSymptoms.clear();
+				addSymptoms(modelListSymptoms);
+			}
+		});
+	}
+	
 	private void addJTextPaneViewInstructions() {
 		JTextPane txtpnInstructions = new JTextPane();
 		txtpnInstructions.setText("Instructions");
@@ -149,14 +174,14 @@ public class SelectSymptom {
 		JLabel lbl_diseases = new JLabel("Diseases");
 		lbl_diseases.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_diseases.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_diseases.setBounds(379, 11, 91, 24);
+		lbl_diseases.setBounds(601, 11, 91, 24);
 		frame.getContentPane().add(lbl_diseases);
 	}
 
 	private JList<String> addDiseasesJList(DefaultListModel<String> modelListDiseases) {
 		JList<String> list_diseases = new JList<>(modelListDiseases);
 		list_diseases.setBorder(new LineBorder(new Color(0, 0, 0)));
-		list_diseases.setBounds(336, 46, 183, 211);
+		list_diseases.setBounds(564, 46, 183, 211);
 		frame.getContentPane().add(list_diseases);
 		return list_diseases;
 	}
@@ -178,5 +203,20 @@ public class SelectSymptom {
 		frame.getContentPane().add(list_symptoms);
 		return list_symptoms;
 	}
-
+	
+	private JList<String> addSymptomsSelectedJList(DefaultListModel<String> modelListSymptomsSelected) {
+		JList<String> list_symptoms_selected = new JList<>(modelListSymptomsSelected);
+		list_symptoms_selected.setBorder(new LineBorder(new Color(0, 0, 0)));
+		list_symptoms_selected.setBounds(296, 46, 183, 211);
+		frame.getContentPane().add(list_symptoms_selected);
+		
+		return list_symptoms_selected;
+	}
+	
+	private void addSymptomsSelectedLabel() {
+		JLabel lblSymptomsSelected = new JLabel("Symptoms Selected");
+		lblSymptomsSelected.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblSymptomsSelected.setBounds(318, 16, 161, 15);
+		frame.getContentPane().add(lblSymptomsSelected);
+	}
 }
