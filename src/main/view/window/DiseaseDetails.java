@@ -86,6 +86,7 @@ public class DiseaseDetails {
 		
 		textPaneDiseaseTitle.setBounds(127, 11, 206, 23);
 		textPaneDiseaseTitle.setText(diseaseSelected);
+		textPaneDiseaseTitle.setEditable(false);
 		frame.getContentPane().add(textPaneDiseaseTitle);
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -100,6 +101,8 @@ public class DiseaseDetails {
 	}
 	
 	private void addDetails(DefaultListModel<String> modelListDetails, Set<String> details) {
-		details.stream().forEach(symptom -> modelListDetails.addElement(symptom));
+		if(details != null){
+			details.stream().forEach(symptom -> modelListDetails.addElement(symptom));			
+		}
 	}
 }

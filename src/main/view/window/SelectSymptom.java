@@ -52,7 +52,7 @@ public class SelectSymptom {
 
 	private void initialize() {
 		frame = new FrameBackground("Select Symptom", "../Medicina.jpg");
-		frame.setBounds(200, 200, 800, 700);
+		frame.setBounds(200, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -120,19 +120,22 @@ public class SelectSymptom {
 	
 	private List<String> addSymptoms(DefaultListModel<String> modelListSymptoms) {
 		
-		List<String> list = new LinkedList<>();
-		list.add("Elemento 1");
-		list.add("Elemento 2");
-		list.add("Elemento 3");
-		list.add("Elemento 4");
-				
-		for ( int i = 0; i < list.size(); i++ ){
-			modelListSymptoms.addElement( list.get(i));
-		}
-		
-		return list;
+//		List<String> list = new LinkedList<>();
+//		list.add("Elemento 1");
+//		list.add("Elemento 2");
+//		list.add("Elemento 3");
+//		list.add("Elemento 4");
+//				
+//		for ( int i = 0; i < list.size(); i++ ){
+//			modelListSymptoms.addElement( list.get(i));
+//		}
+//		
+//		return list;
 		//Habilitar cuando esten cargados los sintomas en la base de datos
-		//this.core.getAllSymptoms().forEach(symptom -> modelListSymptoms.addElement(symptom));
+		List<String> symptoms = this.core.getAllSymptoms();
+		symptoms.forEach(symptom -> modelListSymptoms.addElement(symptom));
+		
+		return symptoms;
 	}
 
 	private void addJButtonChooseDisease(JList<String> list_diseases) {

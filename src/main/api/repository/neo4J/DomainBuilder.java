@@ -11,9 +11,7 @@ public class DomainBuilder {
     private Retriever retriever;
 
     public DomainBuilder() {
-
         this.retriever = new Retriever();
-
     }
 
     //Given a list of the symptom names, we build the model
@@ -31,6 +29,10 @@ public class DomainBuilder {
 
     public Disease buildDiseaseWithAllItsSymptoms(String diseaseName) {
 
+    	if(diseaseName == "" || diseaseName == null){
+    		return null;
+    	}
+    	
         Disease disease = new Disease(diseaseName);
         List<String> symptomNames = this.retriever.retrieveSymptomsFromAGivenDisease(disease);
         List<Symptom> symptoms = this.modelSymptomObjects(symptomNames);

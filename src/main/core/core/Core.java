@@ -35,6 +35,9 @@ public class Core {
 	 * ToDo: TEST
 	 */
 	public Set<String> getDiseaseDetails(String diseaseSelected) {
+		if(diseaseSelected == "" || diseaseSelected == null){
+			return null;
+		}
 		Disease disease = this.resourceContainer.getLoadDiseaseResource().loadDisease(diseaseSelected);
 		return disease.getSymptoms().keySet();
 	}

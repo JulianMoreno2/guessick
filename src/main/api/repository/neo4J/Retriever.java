@@ -13,11 +13,14 @@ public class Retriever {
 
     private Session session;
     
+    public Retriever(){
+    	this.initializeSession();
+    	this.initializeDataBase();
+    }
+    
     public List<String> retrieveDiseasesGivenTheseSymptoms(List<Symptom> symptoms) {
 
-        this.initializeSession();
-
-        /*The algorythm is: for EACH symptom in the list,
+    	/*The algorythm is: for EACH symptom in the list,
         we retrieve ALL diseases that show it;
         then we do the intersection between the results
          */
@@ -40,12 +43,15 @@ public class Retriever {
             listOfDiseaseSets.add(diseaseNames);
 
         }
-
-        Set<String> diseaseNames = listOfDiseaseSets.get(0);
+        
+        Set<String> diseaseNames = new HashSet<String>();
+        
+        if(!listOfDiseaseSets.isEmpty()){
+        	diseaseNames = listOfDiseaseSets.get(0);        	
+        }
+        
         for(int i=1; i < listOfDiseaseSets.size(); i++) { //This starts at 1 because we have a copy of its number 0 set
-
             diseaseNames.retainAll(listOfDiseaseSets.get(i)); //We intersect our copy with every other disease set
-
         }
 
         if (diseaseNames.isEmpty()) {
@@ -60,7 +66,6 @@ public class Retriever {
             diseases.add(disease);
         }
 
-        this.session.close();
         return diseases;
 
     }
@@ -84,10 +89,33 @@ public class Retriever {
         this.session = driver.session();
 
     }
+    
+    private void initializeDataBase(){
+    	session.run("MATCH (n) DETACH DELETE n"); //Delete all
+
+        session.run("CREATE (d_ebola: Ebola { name:'Ebola' , type:'disease' } )");
+        session.run("CREATE (s_fever: Fever { name:'Fever' , type:'symptom' } )");
+        session.run("CREATE (s_headache: Headache { name:'Headache' , type:'symptom' } )");
+
+        session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (d_ebola)-[Has:has]->(s_fever)");
+        session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_ebola)");
+        session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (d_ebola)-[Has:has]->(s_headache)");
+        session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_ebola)");
+
+        session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (d_ebola)-[Has:has]->(s_fever)"); 
+        session.run("MATCH (d_ebola: Ebola),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_ebola)"); 
+        session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (d_ebola)-[Has:has]->(s_headache)"); 
+        session.run("MATCH (d_ebola: Ebola),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_ebola)"); 
+        session.run("MATCH (d_flew: Flew),(s_fever: Fever) CREATE (d_flew)-[Has:has]->(s_fever)"); 
+        session.run("MATCH (d_flew: Flew),(s_fever: Fever) CREATE (s_fever)-[Is_In:is_in]->(d_flew)"); 
+        session.run("MATCH (d_flew: Flew),(s_headache: Headache) CREATE (d_flew)-[Has:has]->(s_headache)"); 
+        session.run("MATCH (d_flew: Flew),(s_headache: Headache) CREATE (s_headache)-[Is_In:is_in]->(d_flew)"); 
+        session.run("MATCH (d_flew: Flew),(s_coughing: Coughing) CREATE (d_flew)-[Has:has]->(s_coughing)"); 
+        session.run("MATCH (d_flew: Flew),(s_coughing: Coughing) CREATE (s_coughing)-[Is_In:is_in]->(d_flew)");
+    }
 
     public List<String> retrieveSymptomsFromAGivenDisease(Disease disease) {
 
-        this.initializeSession();
         String diseaseID = this.retrieveDiseaseId(disease).toString();
 
         String query = "START a=node(" + diseaseID + ") MATCH (a)-[:has*]->(b) RETURN distinct b.name AS name";
@@ -99,7 +127,6 @@ public class Retriever {
             symptomNames.add(record.get("name").asString());
 
         }
-        this.session.close();
         return symptomNames;
 
     }
@@ -119,8 +146,6 @@ public class Retriever {
 
     public List<String> retrieveAllSymptoms() {
 
-        this.initializeSession();
-
         List<String> symptomNames = new LinkedList<String>();
         String query = "MATCH(n) WHERE n.type = 'symptom' RETURN n.name AS name";
         StatementResult result = this.session.run(query);
@@ -130,7 +155,6 @@ public class Retriever {
             symptomNames.add(record.get("name").asString());
 
         }
-        this.session.close();
         return symptomNames;
 
     }
