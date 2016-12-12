@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import core.Core;
-import core.ResourceContainer;
 import view.FrameBackground;
 
 import javax.swing.JList;
@@ -18,14 +17,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.JTextArea;
 
 public class SelectSymptom {
 
@@ -52,7 +49,7 @@ public class SelectSymptom {
 
 	private void initialize() {
 		frame = new FrameBackground("Select Symptom", "../Medicina.jpg");
-		frame.setBounds(200, 100, 800, 600);
+		frame.setBounds(200, 100, 800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -119,18 +116,7 @@ public class SelectSymptom {
 	}
 	
 	private List<String> addSymptoms(DefaultListModel<String> modelListSymptoms) {
-		
-//		List<String> list = new LinkedList<>();
-//		list.add("Elemento 1");
-//		list.add("Elemento 2");
-//		list.add("Elemento 3");
-//		list.add("Elemento 4");
-//				
-//		for ( int i = 0; i < list.size(); i++ ){
-//			modelListSymptoms.addElement( list.get(i));
-//		}
-//		
-//		return list;
+
 		//Habilitar cuando esten cargados los sintomas en la base de datos
 		List<String> symptoms = this.core.getAllSymptoms();
 		symptoms.forEach(symptom -> modelListSymptoms.addElement(symptom));
@@ -169,6 +155,7 @@ public class SelectSymptom {
 		JTextPane txtpnInstructions = new JTextPane();
 		txtpnInstructions.setText("Instructions");
 		txtpnInstructions.setBounds(10, 380, 564, 70);
+		txtpnInstructions.setEnabled(false);
 		frame.getContentPane().add(txtpnInstructions);
 	}
 

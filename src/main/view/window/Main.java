@@ -35,7 +35,7 @@ public class Main {
 	private void initialize() {		
 		new ResourceContainer();
 		frame = new FrameBackground("Guessick", "../Medicina.jpg");
-		frame.setBounds(100, 100, 600, 500);
+		frame.setBounds(100, 75, 600, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
